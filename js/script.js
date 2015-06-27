@@ -57,6 +57,11 @@ $(document).ready(function() {
 
         var i = 0;
         $('#timer-display').append('<p>' + (i + 1) + '/' + tasks.length + ': '  + tasks[i] + '</p>');
+        $('html, body').animate({
+            scrollTop: $(document).height()-$(window).height()},
+            500
+        );
+
         intervalId = window.setInterval(function() {
             // playMultiSound('alarm-sound');
             document.getElementById('alarm').play();
@@ -64,12 +69,21 @@ $(document).ready(function() {
             if(++i > tasks.length - 1) {
                 window.clearInterval(intervalId);
                 $('#timer-display').append('<p>Done</p>');
+                $('html, body').animate({
+                    scrollTop: $(document).height()-$(window).height()},
+                    500
+                );
+
                 window.setTimeout(function() {
                     showConfiguration();
-                }, 1000);
+                }, 1500);
             }
             else {
                 $('#timer-display').append('<p>' + (i + 1) + '/' + tasks.length + ': '  + tasks[i] + '</p>');
+                $('html, body').animate({
+                    scrollTop: $(document).height()-$(window).height()},
+                    500
+                );
             }
         }, ms);
     });

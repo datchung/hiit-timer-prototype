@@ -1,0 +1,35 @@
+{
+  "name": "HIIT Timer",
+  "version": "0.1.0",
+  "authors": [
+    "datchung <innochi.contact@gmail.com>"
+  ],
+  "description": "Congifurable timer for HIIT or other workout.",
+  "main": "index.htm",
+  "keywords": [
+    "HIIT",
+    "workout",
+    "exercise",
+    "timer",
+    "stopwatch",
+    "stop",
+    "watch",
+    "high",
+    "intensity",
+    "interval",
+    "training",
+    "fitness"
+  ],
+  "license": "MIT",
+  "homepage": "datchung.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.3"
+  }
+}

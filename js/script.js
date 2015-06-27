@@ -42,8 +42,8 @@ $(document).ready(function() {
 
     $('#start').click(function() {
         console.log('Start clicked');
-        playMultiSound('alarm-sound');
-        // document.getElementById('alarm').play();
+        // playMultiSound('alarm-sound');
+        document.getElementById('alarm').play();
 
         // Get configuration
         var ms = Number($('#ms').val()) || 30000;
@@ -58,8 +58,8 @@ $(document).ready(function() {
         var i = 0;
         $('#timer-display').append('<p>' + (i + 1) + '/' + tasks.length + ': '  + tasks[i] + '</p>');
         intervalId = window.setInterval(function() {
-            playMultiSound('alarm-sound');
-            // document.getElementById('alarm').play();
+            // playMultiSound('alarm-sound');
+            document.getElementById('alarm').play();
 
             if(++i > tasks.length - 1) {
                 window.clearInterval(intervalId);

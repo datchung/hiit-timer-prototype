@@ -23,19 +23,29 @@ $(document).ready(function() {
     };
 
     var showConfiguration = function() {
-        // Show configuration
         $('#configuration').css({ display: 'block' });
-
-        // Hide timer
         $('#timer').css({ display: 'none' });
     };
 
     var showTimer = function() {
-        // Hide configuration
         $('#configuration').css({ display: 'none' });
-
-        // Show timer
         $('#timer').css({ display: 'block' });
+    };
+
+    var showTimerMessage = function(message) {
+        $('#timer-display').append(message);
+        $('html, body').animate({
+            scrollTop: $(document).height()-$(window).height()},
+            500
+        );
+    };
+
+    var showTimerTask = function(i, total, task) {
+        showTimerMessage('<p>' + (i + 1) + '/' + total + ': '  + task + '</p>');
+    };
+
+    var showTimerDone = function(i, total, task) {
+        showTimerMessage('<p>Done</p>');
     };
 
     var intervalId;
@@ -56,11 +66,7 @@ $(document).ready(function() {
         $('#timer-display').html('');
 
         var i = 0;
-        $('#timer-display').append('<p>' + (i + 1) + '/' + tasks.length + ': '  + tasks[i] + '</p>');
-        $('html, body').animate({
-            scrollTop: $(document).height()-$(window).height()},
-            500
-        );
+        showTimerTask(i, tasks.length, tasks[i]);
 
         intervalId = window.setInterval(function() {
             // playMultiSound('alarm-sound');
@@ -68,22 +74,14 @@ $(document).ready(function() {
 
             if(++i > tasks.length - 1) {
                 window.clearInterval(intervalId);
-                $('#timer-display').append('<p>Done</p>');
-                $('html, body').animate({
-                    scrollTop: $(document).height()-$(window).height()},
-                    500
-                );
+                showTimerDone();
 
                 window.setTimeout(function() {
                     showConfiguration();
                 }, 1500);
             }
             else {
-                $('#timer-display').append('<p>' + (i + 1) + '/' + tasks.length + ': '  + tasks[i] + '</p>');
-                $('html, body').animate({
-                    scrollTop: $(document).height()-$(window).height()},
-                    500
-                );
+                showTimerTask(i, tasks.length, tasks[i]);
             }
         }, ms);
     });

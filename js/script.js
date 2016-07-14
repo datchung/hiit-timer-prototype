@@ -56,7 +56,7 @@ $(document).ready(function() {
         document.getElementById('alarm').play();
 
         // Get configuration
-        var ms = Number($('#ms').val()) || 30000;
+        var intervalSeconds = Number($('#interval').val()) || 30;
         var tasks = $('#tasks').val().split('\n') || [];
         console.log('tasks', tasks);
 
@@ -83,12 +83,12 @@ $(document).ready(function() {
             else {
                 showTimerTask(i, tasks.length, tasks[i]);
             }
-        }, ms);
+        }, intervalSeconds * 1000);
     });
 
     $('#stop').click(function() {
         console.log('Stop clicked');
-        
+
         showConfiguration();
 
         window.clearInterval(intervalId);

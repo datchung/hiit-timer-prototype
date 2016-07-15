@@ -30,14 +30,14 @@
 
     <div id="configuration">
         <h3>Configuration</h3>
-        
+
         <label for="tasks">Tasks (one per line)</label>
         <textarea name="tasks" id="tasks" cols="40" rows="10"></textarea>
 
         <br />
-        <label for="ms">Interval (ms)</label>
-        <input type="text" id="ms" value="30000" />
-        
+        <label for="interval">Interval (seconds)</label>
+        <input type="number" id="interval" value="30" />
+
         <br/>
         <input type="button" id="start" value="Start" />
     </div>
@@ -50,7 +50,7 @@
 
     <div id="timer">
         <h3>Timer Status</h3>
-        
+
         <input type="button" id="stop" value="Stop" />
 
         <div id="timer-display">

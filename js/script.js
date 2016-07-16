@@ -33,7 +33,7 @@ $(document).ready(function() {
     };
 
     var showTimerMessage = function(message) {
-        $('#timer-display').html(message);
+        $('#timer-display').append(message);
         $('html, body').animate({
             scrollTop: $(document).height()-$(window).height()},
             500

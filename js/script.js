@@ -33,7 +33,7 @@ $(document).ready(function() {
     };
 
     var showTimerMessage = function(message) {
-        $('#timer-display').append(message);
+        $('#timer-display').html(message);
         $('html, body').animate({
             scrollTop: $(document).height()-$(window).height()},
             500
@@ -46,9 +46,38 @@ $(document).ready(function() {
 
     var showTimerDone = function(i, total, task) {
         showTimerMessage('<p>Done</p>');
+        showTimerCountdown();
+    };
+
+    var showTimerCountdown = function(timeRemaining) {
+        if(timeRemaining) {
+            $('#time-remaining').html('<p>' + timeRemaining + '</p>');
+        }
+        else {
+            $('#time-remaining').html('');
+        }
+    };
+
+    var startTimerCountdown = function(intervalSeconds) {
+        var timeRemaining = intervalSeconds;
+        var timerCountdownId;
+
+        showTimerCountdown(timeRemaining--);
+        timerCountdownId = window.setInterval(function() {
+            if(timeRemaining < 0) {
+                window.clearInterval(timerCountdownId);
+                showTimerCountdown();
+            }
+            else {
+                showTimerCountdown(timeRemaining--);
+            }
+        }, 1000);
+
+        return timerCountdownId;
     };
 
     var intervalId;
+    var timerCountdownId;
 
     $('#start').click(function() {
         console.log('Start clicked');
@@ -67,13 +96,14 @@ $(document).ready(function() {
 
         var i = 0;
         showTimerTask(i, tasks.length, tasks[i]);
+        timerCountdownId = startTimerCountdown(intervalSeconds);
 
         intervalId = window.setInterval(function() {
-            // playMultiSound('alarm-sound');
             document.getElementById('alarm').play();
 
             if(++i > tasks.length - 1) {
                 window.clearInterval(intervalId);
+                window.clearInterval(timerCountdownId);
                 showTimerDone();
 
                 window.setTimeout(function() {
@@ -82,6 +112,7 @@ $(document).ready(function() {
             }
             else {
                 showTimerTask(i, tasks.length, tasks[i]);
+                timerCountdownId = startTimerCountdown(intervalSeconds);
             }
         }, intervalSeconds * 1000);
     });
@@ -92,5 +123,6 @@ $(document).ready(function() {
         showConfiguration();
 
         window.clearInterval(intervalId);
+        window.clearInterval(timerCountdownId);
     });
 });

@@ -33,7 +33,7 @@ $(document).ready(function() {
     };
 
     var showTimerMessage = function(message) {
-        $('#timer-display').append(message);
+        $('#timer-display').append('<br/>' + message);
         $('html, body').animate({
             scrollTop: $(document).height()-$(window).height()},
             500
@@ -41,7 +41,7 @@ $(document).ready(function() {
     };
 
     var showTimerTask = function(i, total, task) {
-        showTimerMessage('<p>' + (i + 1) + '/' + total + ': '  + task + '</p>');
+        showTimerMessage((i + 1) + '/' + total + ': '  + task);
     };
 
     var showTimerDone = function(i, total, task) {
@@ -51,7 +51,7 @@ $(document).ready(function() {
 
     var showTimerCountdown = function(timeRemaining) {
         if(timeRemaining) {
-            $('#time-remaining').html('<p>' + timeRemaining + '</p>');
+            $('#time-remaining').html('(' + timeRemaining + ')');
         }
         else {
             $('#time-remaining').html('');
@@ -64,9 +64,8 @@ $(document).ready(function() {
 
         showTimerCountdown(timeRemaining--);
         timerCountdownId = window.setInterval(function() {
-            if(timeRemaining < 0) {
+            if(timeRemaining < 1) {
                 window.clearInterval(timerCountdownId);
-                showTimerCountdown();
             }
             else {
                 showTimerCountdown(timeRemaining--);

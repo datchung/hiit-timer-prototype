@@ -64,9 +64,8 @@ $(document).ready(function() {
 
         showTimerCountdown(timeRemaining--);
         timerCountdownId = window.setInterval(function() {
-            if(timeRemaining < 0) {
+            if(timeRemaining < 1) {
                 window.clearInterval(timerCountdownId);
-                showTimerCountdown();
             }
             else {
                 showTimerCountdown(timeRemaining--);

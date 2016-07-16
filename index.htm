@@ -23,6 +23,9 @@
         #timer p {
             font-size: 3.5em;
         }
+        #time-remaining p {
+            font-size: 3em;
+        }
     </style>
 </head>
 <body>
@@ -42,18 +45,17 @@
         <input type="button" id="start" value="Start" />
     </div>
 
-    <!--<audio id="alarm4" src="audio/alarm.mp3" preload="auto"></audio>-->
-    <!--<video id="alarm" src="audio/alarm.mp3"></video>-->
     <audio id="alarm" controls="controls">
         <source id="alarm-sound" src="audio/alarm.mp3" type="audio/mpeg" />
     </audio>
 
     <div id="timer">
-        <h3>Timer Status</h3>
-
         <input type="button" id="stop" value="Stop" />
 
         <div id="timer-display">
+        </div>
+
+        <div id="time-remaining">
         </div>
     </div>
 

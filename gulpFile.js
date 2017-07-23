@@ -5,6 +5,7 @@ var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var cleanCSS = require('gulp-clean-css');
 
 // gulp dist
 
@@ -44,8 +45,10 @@ gulp.task('dist-vendor-scripts', function() {
 
 gulp.task('dist-vendor-styles', function() {
     return gulp.src([
-            'bower_components/bootstrap/dist/css/bootstrap.min.css'
+            'bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'node_modules/normalize.css/normalize.css'
         ])
+        .pipe(cleanCSS())
         .pipe(concat('vendor.css'))
         .pipe(gulp.dest('dist'));
 });
@@ -96,8 +99,10 @@ gulp.task('dev-vendor-scripts', function() {
 
 gulp.task('dev-vendor-styles', function() {
     return gulp.src([
-            'bower_components/bootstrap/dist/css/bootstrap.min.css'
+            'bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'node_modules/normalize.css/normalize.css'
         ])
+        .pipe(cleanCSS())
         .pipe(concat('vendor.css'))
         .pipe(gulp.dest(''));
 });

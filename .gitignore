@@ -3,6 +3,11 @@ node_modules/
 
 #bower
 bower_components/
+node_modules
+dist/
+app.js
+vendor.js
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

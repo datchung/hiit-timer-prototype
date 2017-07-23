@@ -12,5 +12,8 @@ bower install
 gulp dev
 ```
 3. Open index.htm in browser
-4. Run dist task (optional)
-5. Open dist/index.htm in browser
+4. (Optional) Run dist task
+```
+gulp dist
+```
+5. (Optional) Open dist/index.htm in browser

@@ -7,6 +7,7 @@ node_modules
 dist/
 app.js
 vendor.js
+vendor.css
 
 # Windows image file caches
 Thumbs.db

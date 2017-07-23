@@ -6,17 +6,17 @@ $(document).ready(function() {
     var audioChannels = [];
     for (a=0;a<channel_max;a++) {                                   // prepare the channels
         audioChannels[a] = [];
-        audioChannels[a]['channel'] = new Audio();                      // create a new audio object
-        audioChannels[a]['finished'] = -1;                          // expected end time for this channel
+        audioChannels[a].channel = new Audio();                      // create a new audio object
+        audioChannels[a].finished = -1;                          // expected end time for this channel
     }
     var playMultiSound = function(s) {
         for (a=0;a<audioChannels.length;a++) {
             thistime = new Date();
-            if (audioChannels[a]['finished'] < thistime.getTime()) {            // is this channel finished?
-                audioChannels[a]['finished'] = thistime.getTime() + document.getElementById(s).duration*1000;
-                audioChannels[a]['channel'].src = document.getElementById(s).src;
-                audioChannels[a]['channel'].load();
-                audioChannels[a]['channel'].play();
+            if (audioChannels[a].finished < thistime.getTime()) {            // is this channel finished?
+                audioChannels[a].finished = thistime.getTime() + document.getElementById(s).duration*1000;
+                audioChannels[a].channel.src = document.getElementById(s).src;
+                audioChannels[a].channel.load();
+                audioChannels[a].channel.play();
                 break;
             }
         }

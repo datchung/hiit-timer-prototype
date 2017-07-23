@@ -18,9 +18,9 @@ gulp.task('dist-clean', function () {
 gulp.task('dist-scripts', function() {
     return gulp.src('js/**/*.js')
         .pipe(jshint())                         // check syntax, etc
+        .pipe(jshint.reporter('default'))       // report jshint errors
         .pipe(concat('app.js'))                 // concat all files
         .pipe(uglify())                         // minify
-        //.pipe(rename({ extname: '.min.js' }))   // rename
         .pipe(gulp.dest('dist'));            // copy to destination
 });
 
@@ -84,8 +84,9 @@ gulp.task('dev-clean', function () {
 gulp.task('dev-scripts', function() {
     return gulp.src('js/**/*.js')
         .pipe(jshint())                         // check syntax, etc
+        .pipe(jshint.reporter('default'))       // report jshint errors
         .pipe(concat('app.js'))                 // concat all files
-        .pipe(gulp.dest(''));                 // copy to destination
+        .pipe(gulp.dest(''));                   // copy to destination
 });
 
 gulp.task('dev-vendor-scripts', function() {

@@ -75,6 +75,14 @@ $(document).ready(function() {
         return timerCountdownId;
     };
 
+    var keepScreenOn = function() {
+        if(typeof native !== 'undefined' && native != null) native.KeepScreenOn();
+    };
+
+    var resetKeepScreenOn = function() {
+        if(typeof native !== 'undefined' && native != null) native.ResetKeepScreenOn();
+    };
+
     var intervalId;
     var timerCountdownId;
 
@@ -88,6 +96,7 @@ $(document).ready(function() {
         var tasks = $('#tasks').val().split('\n') || [];
         console.log('tasks', tasks);
 
+        keepScreenOn();
         showTimer();
 
         // Clear previous runs
@@ -103,6 +112,7 @@ $(document).ready(function() {
             if(++i > tasks.length - 1) {
                 window.clearInterval(intervalId);
                 window.clearInterval(timerCountdownId);
+                resetKeepScreenOn();
                 showTimerDone();
 
                 window.setTimeout(function() {
@@ -123,5 +133,6 @@ $(document).ready(function() {
 
         window.clearInterval(intervalId);
         window.clearInterval(timerCountdownId);
+        resetKeepScreenOn();
     });
 });

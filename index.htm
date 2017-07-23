@@ -17,6 +17,13 @@
         audio {
             display: none
         }
+        .textwrapper {
+            margin: 5px 0;
+            padding: 3px;
+        }
+        .textwrapper textarea {
+            width: 100%;
+        }
         #timer {
             display: none;
         }
@@ -29,13 +36,12 @@
     </style>
 </head>
 <body>
-    <h1>HIIT Timer</h1>
+    <h1>HIIT Workout Timer</h1>
 
     <div id="configuration">
-        <h3>Configuration</h3>
+        <label for="tasks">Exercises (one per line)</label>
 
-        <label for="tasks">Tasks (one per line)</label>
-        <textarea name="tasks" id="tasks" cols="40" rows="10"></textarea>
+        <div class="textwrapper"><textarea name="tasks" id="tasks" cols="40" rows="10"></textarea></div>
 
         <br />
         <label for="interval">Interval (seconds)</label>
@@ -46,7 +52,7 @@
     </div>
 
     <audio id="alarm" controls="controls">
-        <source id="alarm-sound" src="audio/alarm.mp3" type="audio/mpeg" />
+        <source id="alarm-sound" src="assets/alarm.mp3" type="audio/mpeg" />
     </audio>
 
     <div id="timer">
@@ -57,7 +63,7 @@
     </div>
 
     <!--<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>-->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="vendor.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

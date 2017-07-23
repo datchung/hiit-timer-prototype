@@ -33,11 +33,20 @@ gulp.task('dist-media', function() {
         .pipe(gulp.dest('dist/assets'));
 });
 
-gulp.task('dist-vendor', function() {
+gulp.task('dist-vendor-scripts', function() {
     return gulp.src([
-            'bower_components/jquery/dist/jquery.min.js'
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/bootstrap/dist/js/bootstrap.min.js'
         ])
         .pipe(concat('vendor.js'))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('dist-vendor-styles', function() {
+    return gulp.src([
+            'bower_components/bootstrap/dist/css/bootstrap.min.css'
+        ])
+        .pipe(concat('vendor.css'))
         .pipe(gulp.dest('dist'));
 });
 
@@ -47,7 +56,8 @@ gulp.task('dist', function (callback) {
         'dist-scripts',
         'dist-html',
         'dist-media',
-        'dist-vendor',
+        'dist-vendor-scripts',
+        'dist-vendor-styles',
         function (error) {
             if (error) {
                 console.log(error.message);
@@ -75,16 +85,28 @@ gulp.task('dev-scripts', function() {
         .pipe(gulp.dest(''));                 // copy to destination
 });
 
-gulp.task('dev-vendor', function() {
-    return gulp.src(['bower_components/jquery/dist/jquery.min.js'])
+gulp.task('dev-vendor-scripts', function() {
+    return gulp.src([
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/bootstrap/dist/bootstrap.min.js'
+        ])
         .pipe(concat('vendor.js'))
+        .pipe(gulp.dest(''));
+});
+
+gulp.task('dev-vendor-styles', function() {
+    return gulp.src([
+            'bower_components/bootstrap/dist/css/bootstrap.min.css'
+        ])
+        .pipe(concat('vendor.css'))
         .pipe(gulp.dest(''));
 });
 
 gulp.task('dev', function (callback) {
     runSequence(
         'dev-scripts',
-        'dev-vendor',
+        'dev-vendor-scripts',
+        'dev-vendor-styles',
         function (error) {
             if (error) {
                 console.log(error.message);

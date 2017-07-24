@@ -83,18 +83,41 @@ $(document).ready(function() {
         if(typeof native !== 'undefined' && native != null) native.ResetKeepScreenOn();
     };
 
+    var isNullOrWhitespace = function(str) {
+        return !str || !str.trim();
+    };
+
+    // TODO type (info, success, warning, danger)
+    // TODO buttons (cancel, ok, etc)
+    // TODO button actions/callbacks
+    var showModal = function(title, body) {
+        $('#mainModal .modal-title').text(title);
+        $('#mainModal .modal-body').text(body);
+        $('#mainModal').modal('show');
+    };
+
     var intervalId;
     var timerCountdownId;
 
     $('#start').click(function() {
         console.log('Start clicked');
-        // playMultiSound('alarm-sound');
-        document.getElementById('alarm').play();
 
         // Get configuration
         var intervalSeconds = Number($('#interval').val()) || 30;
         var tasks = $('#tasks').val().split('\n') || [];
+        
+        // Check validity and clean up configuration
+        tasks = _.filter(tasks, function(task) {
+            return !isNullOrWhitespace(task);
+        });
         console.log('tasks', tasks);
+        if(tasks.length < 1) {
+            showModal('No exercises entered', 'Please enter one or more exercieses.');
+            return;
+        }
+
+        // playMultiSound('alarm-sound');
+        document.getElementById('alarm').play();
 
         keepScreenOn();
         showTimer();

@@ -10,9 +10,9 @@ var cleanCSS = require('gulp-clean-css');
 // gulp dist
 
 gulp.task('dist-clean', function () {
-  return del([
-    'dist/**/*.*'
-  ]);
+    return del([
+        'dist/**/*.*'
+    ]);
 });
 
 gulp.task('dist-scripts', function() {
@@ -37,7 +37,8 @@ gulp.task('dist-media', function() {
 gulp.task('dist-vendor-scripts', function() {
     return gulp.src([
             'bower_components/jquery/dist/jquery.min.js',
-            'bower_components/bootstrap/dist/js/bootstrap.min.js'
+            'bower_components/bootstrap/dist/js/bootstrap.min.js',
+            'bower_components/underscore/underscore-min.js'
         ])
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest('dist'));
@@ -75,10 +76,10 @@ gulp.task('dist', function (callback) {
 // gulp dev
 
 gulp.task('dev-clean', function () {
-  return del([
-    'js/app.js',
-    'vendor/vendor.js'
-  ]);
+    return del([
+        'js/app.js',
+        'vendor/vendor.js'
+    ]);
 });
 
 gulp.task('dev-scripts', function() {
@@ -92,7 +93,8 @@ gulp.task('dev-scripts', function() {
 gulp.task('dev-vendor-scripts', function() {
     return gulp.src([
             'bower_components/jquery/dist/jquery.min.js',
-            'bower_components/bootstrap/dist/bootstrap.min.js'
+            'bower_components/bootstrap/dist/js/bootstrap.min.js',
+            'bower_components/underscore/underscore-min.js'
         ])
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest(''));

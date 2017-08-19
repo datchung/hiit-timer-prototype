@@ -40,12 +40,21 @@ $(document).ready(function() {
         );
     };
 
+    var showTimerFlash = function() {
+        $('body').addClass('background-flash');
+        window.setTimeout(function() {
+            $('body').removeClass('background-flash');
+        }, 1000);
+    };
+
     var showTimerTask = function(i, total, task) {
         showTimerMessage((i + 1) + '/' + total + ': '  + task);
+        showTimerFlash();
     };
 
     var showTimerDone = function(i, total, task) {
         showTimerMessage('<p>Done</p>');
+        showTimerFlash();
         showTimerCountdown();
     };
 

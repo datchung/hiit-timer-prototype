@@ -1,0 +1,1 @@
+marquee text showing first x exercises for saved workouts

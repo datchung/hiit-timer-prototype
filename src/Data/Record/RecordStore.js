@@ -27,6 +27,7 @@ class RecordStore extends ReduceStore {
           new Record({
             id: uuid(),
             text: action.text,
+            intervalSeconds: action.intervalSeconds,
             dateCreated: dateCreated,
             dateModified: dateCreated
           })
@@ -45,6 +46,7 @@ class RecordStore extends ReduceStore {
             return new Record({
               id: s.id,
               text: action.record.text,
+              intervalSeconds: action.record.intervalSeconds,
               dateCreated: s.dateCreated,
               dateModified: + new Date()
             });

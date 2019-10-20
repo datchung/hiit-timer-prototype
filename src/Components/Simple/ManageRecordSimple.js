@@ -7,17 +7,35 @@ function ManageRecordSimple(props) {
       <div className="column">
         <form onSubmit={props.onSubmit}>
           <div className="field">
+            <label className="label">
+              Exercises (one per line)
+            </label>
             <div className="control">
-              <input 
-                type="Text"
+              <textarea
+                className="textarea"
+                rows="10"
                 name="text"
-                value={props.record.text || ""}
+                value={props.record.text}
                 onChange={props.onChange}
-                className="input"
                 />
             </div>
           </div>
           
+          <div className="field">
+            <label className="label">
+              Interval (seconds)
+            </label>
+            <div className="control">
+              <input 
+                type="number"
+                className="input"
+                name="intervalSeconds"
+                value={props.record.intervalSeconds || 30}
+                onChange={props.onChange}
+                />
+            </div>
+          </div>
+
           <div className="field">
             <div className="control">
               <button

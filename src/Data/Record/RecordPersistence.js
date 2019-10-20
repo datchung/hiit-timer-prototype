@@ -1,6 +1,6 @@
 var RecordPersistence = (function() {
   function _getRecordsStorageKey() {
-    return "DC_Records";
+    return "DC_Hiit_Records";
   }
 
   function getSavedRecords() {

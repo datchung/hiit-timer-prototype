@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 const Record = Immutable.Record({
   id: '',
   text: '',
+  intervalSeconds: 0,
   dateCreated: 0,
   dateModified: 0,
 });

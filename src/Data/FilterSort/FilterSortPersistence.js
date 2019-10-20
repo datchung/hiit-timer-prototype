@@ -1,6 +1,6 @@
 var FilterSortPersistence = (function() {
   function _getStorageKey() {
-    return "DC_FilterSort";
+    return "DC_Hiit_FilterSort";
   }
 
   function getSavedState() {

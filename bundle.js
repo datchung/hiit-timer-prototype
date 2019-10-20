@@ -44591,14 +44591,39 @@ function ManageRecordSimple(props) {
           'div',
           { className: 'field' },
           _react2.default.createElement(
+            'label',
+            { className: 'label' },
+            'Exercises (one per line)'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'control' },
+            _react2.default.createElement('textarea', {
+              className: 'textarea',
+              rows: '10',
+              name: 'text',
+              value: props.record.text,
+              onChange: props.onChange
+            })
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'field' },
+          _react2.default.createElement(
+            'label',
+            { className: 'label' },
+            'Interval (seconds)'
+          ),
+          _react2.default.createElement(
             'div',
             { className: 'control' },
             _react2.default.createElement('input', {
-              type: 'Text',
-              name: 'text',
-              value: props.record.text || "",
-              onChange: props.onChange,
-              className: 'input'
+              type: 'number',
+              className: 'input',
+              name: 'intervalSeconds',
+              value: props.record.intervalSeconds || 30,
+              onChange: props.onChange
             })
           )
         ),
@@ -45080,7 +45105,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var FilterSortPersistence = function () {
   function _getStorageKey() {
-    return "DC_FilterSort";
+    return "DC_Hiit_FilterSort";
   }
 
   function getSavedState() {
@@ -45212,6 +45237,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Record = _immutable2.default.Record({
   id: '',
   text: '',
+  intervalSeconds: 0,
   dateCreated: 0,
   dateModified: 0
 });
@@ -45281,7 +45307,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var RecordPersistence = function () {
   function _getRecordsStorageKey() {
-    return "DC_Records";
+    return "DC_Hiit_Records";
   }
 
   function getSavedRecords() {
@@ -45376,6 +45402,7 @@ var RecordStore = function (_ReduceStore) {
           var modifiedState = [].concat(_toConsumableArray(state), [new _Record2.default({
             id: (0, _uuid2.default)(),
             text: action.text,
+            intervalSeconds: action.intervalSeconds,
             dateCreated: dateCreated,
             dateModified: dateCreated
           })]);
@@ -45395,6 +45422,7 @@ var RecordStore = function (_ReduceStore) {
             return new _Record2.default({
               id: s.id,
               text: action.record.text,
+              intervalSeconds: action.record.intervalSeconds,
               dateCreated: s.dateCreated,
               dateModified: +new Date()
             });

@@ -44622,7 +44622,7 @@ function ManageRecordSimple(props) {
               type: 'number',
               className: 'input',
               name: 'intervalSeconds',
-              value: props.record.intervalSeconds || 30,
+              value: props.record.intervalSeconds,
               onChange: props.onChange
             })
           )
@@ -44801,6 +44801,7 @@ function ManageRecord(props) {
   var _useState3 = (0, _react.useState)({
     id: null,
     text: "",
+    intervalSeconds: 30,
     dateCreated: 0,
     dateModified: 0
   }),
@@ -44824,6 +44825,7 @@ function ManageRecord(props) {
     setRecord({
       id: recordById.id,
       text: recordById.text,
+      intervalSeconds: recordById.intervalSeconds,
       dateCreated: recordById.dateCreated,
       dateModified: recordById.dateModified
     });
@@ -44848,7 +44850,7 @@ function ManageRecord(props) {
     event.preventDefault();
     if (!formIsValid()) return;
 
-    if (isEdit) props.onUpdateRecord(record);else props.onAddRecord(record.text);
+    if (isEdit) props.onUpdateRecord(record);else props.onAddRecord(record.text, record.intervalSeconds);
 
     props.history.push("/");
   }
@@ -45277,10 +45279,11 @@ var _Dispatcher2 = _interopRequireDefault(_Dispatcher);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Actions = {
-  addRecord: function addRecord(text) {
+  addRecord: function addRecord(text, intervalSeconds) {
     _Dispatcher2.default.dispatch({
       type: _RecordActionTypes2.default.ADD_RECORD,
-      text: text
+      text: text,
+      intervalSeconds: intervalSeconds
     });
   },
   updateRecord: function updateRecord(record) {

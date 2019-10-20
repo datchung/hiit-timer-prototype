@@ -7,6 +7,7 @@ function ManageRecord(props) {
   const [record, setRecord] = useState({
     id: null,
     text: "",
+    intervalSeconds: 30,
     dateCreated: 0,
     dateModified: 0,
   });
@@ -21,6 +22,7 @@ function ManageRecord(props) {
     setRecord({
       id: recordById.id,
       text: recordById.text,
+      intervalSeconds: recordById.intervalSeconds,
       dateCreated: recordById.dateCreated,
       dateModified: recordById.dateModified
     });
@@ -49,7 +51,7 @@ function ManageRecord(props) {
     if(isEdit)
       props.onUpdateRecord(record);
     else
-      props.onAddRecord(record.text);
+      props.onAddRecord(record.text, record.intervalSeconds);
 
     props.history.push("/");
   }

@@ -2,10 +2,11 @@ import ActionTypes from './RecordActionTypes';
 import Dispatcher from '../Dispatcher';
 
 const Actions = {
-  addRecord(text) {
+  addRecord(text, intervalSeconds) {
     Dispatcher.dispatch({
       type: ActionTypes.ADD_RECORD,
       text,
+      intervalSeconds,
     });
   },
   updateRecord(record) {

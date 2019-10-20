@@ -30,7 +30,7 @@ function ManageRecordSimple(props) {
                 type="number"
                 className="input"
                 name="intervalSeconds"
-                value={props.record.intervalSeconds || 30}
+                value={props.record.intervalSeconds}
                 onChange={props.onChange}
                 />
             </div>

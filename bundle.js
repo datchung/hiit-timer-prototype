@@ -44220,7 +44220,7 @@ function AppPage(props) {
         _react2.default.createElement('img', { src: 'images/checked.svg', width: '20' }),
         _react2.default.createElement(
           'span',
-          { className: 'title is-4' },
+          { className: 'title is-6' },
           '\xA0',
           _i18n2.default.t("title")
         )
@@ -44248,7 +44248,7 @@ function AppPage(props) {
 
 exports.default = AppPage;
 
-},{"../../Localization/i18n":115,"./HomePage":91,"./ManageRecordPage":92,"./NotFoundPage":93,"./RecordListPage":94,"react":70,"react-router-dom":64}],91:[function(require,module,exports){
+},{"../../Localization/i18n":113,"./HomePage":91,"./ManageRecordPage":92,"./NotFoundPage":93,"./RecordListPage":94,"react":70,"react-router-dom":64}],91:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44282,7 +44282,7 @@ function HomePage() {
       _react2.default.createElement(
         _reactRouterDom.Link,
         { to: './records', className: 'button is-fullwidth' },
-        _i18n2.default.t("workoutHistory")
+        _i18n2.default.t("recordList")
       )
     )
   );
@@ -44290,7 +44290,7 @@ function HomePage() {
 
 exports.default = HomePage;
 
-},{"../../Localization/i18n":115,"react":70,"react-router-dom":64}],92:[function(require,module,exports){
+},{"../../Localization/i18n":113,"react":70,"react-router-dom":64}],92:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44329,6 +44329,10 @@ function ManageRecordPage(props) {
     setSubTitle(recordById ? _i18n2.default.t("editRecord") : _i18n2.default.t("createRecord"));
   }, [props.match.params.id]);
 
+  function onBackClick() {
+    props.history.goBack();
+  }
+
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
@@ -44339,9 +44343,9 @@ function ManageRecordPage(props) {
         'div',
         { className: 'column' },
         _react2.default.createElement(
-          'h4',
-          { className: 'title is-4' },
-          subTitle
+          'button',
+          { className: 'button', onClick: onBackClick },
+          _i18n2.default.t("back")
         )
       )
     ),
@@ -44352,13 +44356,9 @@ function ManageRecordPage(props) {
         'div',
         { className: 'column' },
         _react2.default.createElement(
-          _reactRouterDom.Link,
-          { to: '/' },
-          _react2.default.createElement(
-            'button',
-            { className: 'button' },
-            _i18n2.default.t("back")
-          )
+          'h5',
+          { className: 'title is-5' },
+          subTitle
         )
       )
     ),
@@ -44368,7 +44368,7 @@ function ManageRecordPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageRecordPage);
 
-},{"../../Localization/i18n":115,"../Smart/ManageRecord":100,"react":70,"react-router-dom":64}],93:[function(require,module,exports){
+},{"../../Localization/i18n":113,"../Smart/ManageRecord":99,"react":70,"react-router-dom":64}],93:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44399,7 +44399,7 @@ function NotFoundPage() {
 
 exports.default = NotFoundPage;
 
-},{"../../Localization/i18n":115,"react":70}],94:[function(require,module,exports){
+},{"../../Localization/i18n":113,"react":70}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44409,6 +44409,8 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+// import RecordCount from '../Smart/RecordCount';
+
 
 var _react = require('react');
 
@@ -44419,10 +44421,6 @@ var _reactRouterDom = require('react-router-dom');
 var _RecordList = require('../Smart/RecordList');
 
 var _RecordList2 = _interopRequireDefault(_RecordList);
-
-var _RecordCount = require('../Smart/RecordCount');
-
-var _RecordCount2 = _interopRequireDefault(_RecordCount);
 
 var _FilterSort = require('../Smart/FilterSort');
 
@@ -44450,22 +44448,38 @@ function RecordListPage(props) {
     setSelectedSort(props.filterSort.sort);
   }, [props.filterSort]);
 
+  function onBackClick() {
+    props.history.goBack();
+  }
+
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: './record/manage' },
+      'div',
+      { className: 'columns is-mobile' },
       _react2.default.createElement(
-        'button',
-        { className: 'button is-primary is-fullwidth' },
-        _i18n2.default.t("createRecord")
+        'div',
+        { className: 'column' },
+        _react2.default.createElement(
+          'button',
+          { className: 'button', onClick: onBackClick },
+          _i18n2.default.t("back")
+        )
       )
     ),
     _react2.default.createElement(
-      'h5',
-      { className: 'title is-6' },
-      'Workout History'
+      'div',
+      { className: 'columns is-mobile' },
+      _react2.default.createElement(
+        'div',
+        { className: 'column' },
+        _react2.default.createElement(
+          'h5',
+          { className: 'title is-5' },
+          _i18n2.default.t("recordList")
+        )
+      )
     ),
     _react2.default.createElement(_FilterSort2.default, _extends({}, props, {
       selectedFilter: selectedFilter,
@@ -44478,9 +44492,9 @@ function RecordListPage(props) {
   );
 }
 
-exports.default = RecordListPage;
+exports.default = (0, _reactRouterDom.withRouter)(RecordListPage);
 
-},{"../../Localization/i18n":115,"../Smart/FilterSort":99,"../Smart/RecordCount":101,"../Smart/RecordList":102,"react":70,"react-router-dom":64}],95:[function(require,module,exports){
+},{"../../Localization/i18n":113,"../Smart/FilterSort":98,"../Smart/RecordList":100,"react":70,"react-router-dom":64}],95:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44605,7 +44619,7 @@ function FilterSortSimple(props) {
 
 exports.default = FilterSortSimple;
 
-},{"../../Localization/i18n":115,"react":70}],96:[function(require,module,exports){
+},{"../../Localization/i18n":113,"react":70}],96:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44695,38 +44709,7 @@ function ManageRecordSimple(props) {
 
 exports.default = ManageRecordSimple;
 
-},{"../../Localization/i18n":115,"react":70}],97:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function RecordCountSimple(props) {
-  return _react2.default.createElement(
-    "div",
-    { className: "columns is-mobile" },
-    _react2.default.createElement(
-      "div",
-      { className: "column content" },
-      _react2.default.createElement(
-        "p",
-        null,
-        props.phrase
-      )
-    )
-  );
-}
-
-exports.default = RecordCountSimple;
-
-},{"react":70}],98:[function(require,module,exports){
+},{"../../Localization/i18n":113,"react":70}],97:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44772,7 +44755,7 @@ function RecordListSimple(props) {
 
 exports.default = RecordListSimple;
 
-},{"../smart/Record":104,"react":70}],99:[function(require,module,exports){
+},{"../smart/Record":102,"react":70}],98:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44810,7 +44793,7 @@ function FilterSort(props) {
 
 exports.default = FilterSort;
 
-},{"../Simple/FilterSortSimple":95,"react":70}],100:[function(require,module,exports){
+},{"../Simple/FilterSortSimple":95,"react":70}],99:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44910,42 +44893,7 @@ function ManageRecord(props) {
 
 exports.default = ManageRecord;
 
-},{"../../Localization/i18n":115,"../Simple/ManageRecordSimple":96,"react":70}],101:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _RecordCountSimple = require('../Simple/RecordCountSimple');
-
-var _RecordCountSimple2 = _interopRequireDefault(_RecordCountSimple);
-
-var _i18n = require('../../Localization/i18n');
-
-var _i18n2 = _interopRequireDefault(_i18n);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function RecordCount(props) {
-  if (props.records.length === 0) {
-    return _react2.default.createElement(_RecordCountSimple2.default, { phrase: _i18n2.default.t("noRecords") });
-  }
-
-  var total = props.records.length;
-  var recordPhrase = total > 1 ? _i18n2.default.t("records") : _i18n2.default.t("record");
-  var phrase = String.format(_i18n2.default.t("recordCount"), total, recordPhrase);
-
-  return _react2.default.createElement(_RecordCountSimple2.default, { phrase: phrase });
-}
-
-exports.default = RecordCount;
-
-},{"../../Localization/i18n":115,"../Simple/RecordCountSimple":97,"react":70}],102:[function(require,module,exports){
+},{"../../Localization/i18n":113,"../Simple/ManageRecordSimple":96,"react":70}],100:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45000,7 +44948,7 @@ function RecordList(props) {
 
 exports.default = RecordList;
 
-},{"../Simple/RecordListSimple":98,"react":70}],103:[function(require,module,exports){
+},{"../Simple/RecordListSimple":97,"react":70}],101:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45051,7 +44999,7 @@ function RecordSimple(props) {
 
 exports.default = RecordSimple;
 
-},{"../../localization/i18n":123,"react":70,"react-router-dom":64}],104:[function(require,module,exports){
+},{"../../localization/i18n":121,"react":70,"react-router-dom":64}],102:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45078,7 +45026,7 @@ function Record(props) {
 
 exports.default = Record;
 
-},{"../simple/RecordSimple":103,"react":70}],105:[function(require,module,exports){
+},{"../simple/RecordSimple":101,"react":70}],103:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45089,7 +45037,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":28}],106:[function(require,module,exports){
+},{"flux":28}],104:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45102,7 +45050,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],107:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45136,7 +45084,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"../Dispatcher":105,"./FilterSortActionTypes":106}],108:[function(require,module,exports){
+},{"../Dispatcher":103,"./FilterSortActionTypes":104}],106:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45174,7 +45122,7 @@ var FilterSortPersistence = function () {
 
 exports.default = FilterSortPersistence;
 
-},{}],109:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45260,7 +45208,7 @@ var FilterSortStore = function (_ReduceStore) {
 
 exports.default = new FilterSortStore();
 
-},{"../Dispatcher":105,"./FilterSortActionTypes":106,"./FilterSortPersistence":108,"flux/utils":37}],110:[function(require,module,exports){
+},{"../Dispatcher":103,"./FilterSortActionTypes":104,"./FilterSortPersistence":106,"flux/utils":37}],108:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45283,7 +45231,7 @@ var Record = _immutable2.default.Record({
 
 exports.default = Record;
 
-},{"immutable":45}],111:[function(require,module,exports){
+},{"immutable":45}],109:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45298,7 +45246,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],112:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45339,7 +45287,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"../Dispatcher":105,"./RecordActionTypes":111}],113:[function(require,module,exports){
+},{"../Dispatcher":103,"./RecordActionTypes":109}],111:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45374,7 +45322,7 @@ var RecordPersistence = function () {
 
 exports.default = RecordPersistence;
 
-},{}],114:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45494,7 +45442,7 @@ var RecordStore = function (_ReduceStore) {
 
 exports.default = new RecordStore();
 
-},{"../Dispatcher":105,"./Record":110,"./RecordActionTypes":111,"./RecordPersistence":113,"flux/utils":37,"uuid":82}],115:[function(require,module,exports){
+},{"../Dispatcher":103,"./Record":108,"./RecordActionTypes":109,"./RecordPersistence":111,"flux/utils":37,"uuid":82}],113:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45565,7 +45513,7 @@ var i18nOptions = {
 exports.i18nOptions = i18nOptions;
 exports.default = _i18next2.default;
 
-},{"./strings_cn":116,"./strings_en":117,"./strings_es":118,"./strings_fr":119,"./strings_pt":120,"./strings_ru":121,"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
+},{"./strings_cn":114,"./strings_en":115,"./strings_es":116,"./strings_fr":117,"./strings_pt":118,"./strings_ru":119,"i18next":44,"i18next-browser-languagedetector":43}],114:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45573,7 +45521,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {};
 
-},{}],117:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45597,8 +45545,24 @@ exports.default = {
   "recordCount": "{0} {1} total",
   "record": "workout",
   "records": "workouts",
-  "workoutHistory": "Workout History"
+  "recordList": "Workout History"
 };
+
+},{}],116:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
+
+},{}],117:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
 
 },{}],118:[function(require,module,exports){
 "use strict";
@@ -45617,22 +45581,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {};
 
 },{}],120:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {};
-
-},{}],121:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {};
-
-},{}],122:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45683,9 +45631,13 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../Components/Pages/AppPage":90,"../Data/FilterSort/FilterSortActions":107,"../Data/FilterSort/FilterSortStore":109,"../Data/Record/RecordActions":112,"../Data/Record/RecordStore":114,"flux/utils":37}],123:[function(require,module,exports){
+},{"../Components/Pages/AppPage":90,"../Data/FilterSort/FilterSortActions":105,"../Data/FilterSort/FilterSortStore":107,"../Data/Record/RecordActions":110,"../Data/Record/RecordStore":112,"flux/utils":37}],121:[function(require,module,exports){
+arguments[4][113][0].apply(exports,arguments)
+},{"./strings_cn":122,"./strings_en":123,"./strings_es":124,"./strings_fr":125,"./strings_pt":126,"./strings_ru":127,"dup":113,"i18next":44,"i18next-browser-languagedetector":43}],122:[function(require,module,exports){
+arguments[4][114][0].apply(exports,arguments)
+},{"dup":114}],123:[function(require,module,exports){
 arguments[4][115][0].apply(exports,arguments)
-},{"./strings_cn":124,"./strings_en":125,"./strings_es":126,"./strings_fr":127,"./strings_pt":128,"./strings_ru":129,"dup":115,"i18next":44,"i18next-browser-languagedetector":43}],124:[function(require,module,exports){
+},{"dup":115}],124:[function(require,module,exports){
 arguments[4][116][0].apply(exports,arguments)
 },{"dup":116}],125:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
@@ -45694,10 +45646,6 @@ arguments[4][118][0].apply(exports,arguments)
 },{"dup":118}],127:[function(require,module,exports){
 arguments[4][119][0].apply(exports,arguments)
 },{"dup":119}],128:[function(require,module,exports){
-arguments[4][120][0].apply(exports,arguments)
-},{"dup":120}],129:[function(require,module,exports){
-arguments[4][121][0].apply(exports,arguments)
-},{"dup":121}],130:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -45735,4 +45683,4 @@ _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   ), document.getElementById("appContainer"));
 });
 
-},{"./containers/AppContainer":122,"./localization/i18n":123,"react":70,"react-dom":58,"react-router-dom":64}]},{},[130]);
+},{"./containers/AppContainer":120,"./localization/i18n":121,"react":70,"react-dom":58,"react-router-dom":64}]},{},[128]);

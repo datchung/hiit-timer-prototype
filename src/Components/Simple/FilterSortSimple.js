@@ -5,7 +5,7 @@ function FilterSortSimple(props) {
   return (
     <React.Fragment>
       <div className="columns is-mobile">
-        <div className="column is-narrow">
+        {/* <div className="column is-narrow">
           <div className="field is-horizontal">
             <div className="field-label is-normal">
               <label className="label has-text-weight-normal">{T.t("filter")}</label>
@@ -19,15 +19,13 @@ function FilterSortSimple(props) {
                       onChange={props.onFilter}
                       >
                       <option value="all">{T.t("all")}</option>
-                      {/* <option value="notDone">{T.t("notDone")}</option>
-                      <option value="done">{T.t("done")}</option> */}
                     </select>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="column is-narrow">
           <div className="field is-horizontal">
             <div className="field-label is-normal">

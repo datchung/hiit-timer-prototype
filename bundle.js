@@ -44530,51 +44530,6 @@ function FilterSortSimple(props) {
             _react2.default.createElement(
               'label',
               { className: 'label has-text-weight-normal' },
-              _i18n2.default.t("filter")
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'field-body' },
-            _react2.default.createElement(
-              'div',
-              { className: 'field is-narrow' },
-              _react2.default.createElement(
-                'div',
-                { className: 'control' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'select' },
-                  _react2.default.createElement(
-                    'select',
-                    {
-                      value: props.selectedFilter,
-                      onChange: props.onFilter
-                    },
-                    _react2.default.createElement(
-                      'option',
-                      { value: 'all' },
-                      _i18n2.default.t("all")
-                    )
-                  )
-                )
-              )
-            )
-          )
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'column is-narrow' },
-        _react2.default.createElement(
-          'div',
-          { className: 'field is-horizontal' },
-          _react2.default.createElement(
-            'div',
-            { className: 'field-label is-normal' },
-            _react2.default.createElement(
-              'label',
-              { className: 'label has-text-weight-normal' },
               _i18n2.default.t("sort")
             )
           ),

@@ -11,7 +11,7 @@ function HomePage() {
         </Link>
 
         <Link to="./records" className="button is-fullwidth">
-          {T.t("workoutHistory")}
+          {T.t("recordList")}
         </Link>
       </div>
     </React.Fragment>

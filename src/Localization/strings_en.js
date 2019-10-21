@@ -16,5 +16,5 @@ export default {
   "recordCount": "{0} {1} total",
   "record": "workout",
   "records": "workouts",
-  "workoutHistory": "Workout History",
+  "recordList": "Workout History",
 };

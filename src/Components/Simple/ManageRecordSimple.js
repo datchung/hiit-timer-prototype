@@ -8,7 +8,7 @@ function ManageRecordSimple(props) {
         <form onSubmit={props.onSubmit}>
           <div className="field">
             <label className="label">
-              Exercises (one per line)
+              {T.t("exercises")}
             </label>
             <div className="control">
               <textarea
@@ -23,7 +23,7 @@ function ManageRecordSimple(props) {
           
           <div className="field">
             <label className="label">
-              Interval (seconds)
+              {T.t('interval')}
             </label>
             <div className="control">
               <input 

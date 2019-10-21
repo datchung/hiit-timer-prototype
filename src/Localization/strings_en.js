@@ -9,7 +9,7 @@ export default {
   "sort": "Sort",
   "newestFirst": "New to Old",
   "oldestFirst": "Old to New",
-  "save": "Save",
+  "save": "Start Workout",
   "delete": "Delete",
   "textRequired": "Text is required",
   "noRecords": "No workout history is available. Click the button above to begin a workout.",
@@ -17,4 +17,6 @@ export default {
   "record": "workout",
   "records": "workouts",
   "recordList": "Workout History",
+  "exercises": "Exercises (one per line)",
+  "interval": "Interval (seconds)",
 };

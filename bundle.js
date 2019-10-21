@@ -44607,7 +44607,7 @@ function ManageRecordSimple(props) {
           _react2.default.createElement(
             'label',
             { className: 'label' },
-            'Exercises (one per line)'
+            _i18n2.default.t("exercises")
           ),
           _react2.default.createElement(
             'div',
@@ -44627,7 +44627,7 @@ function ManageRecordSimple(props) {
           _react2.default.createElement(
             'label',
             { className: 'label' },
-            'Interval (seconds)'
+            _i18n2.default.t('interval')
           ),
           _react2.default.createElement(
             'div',
@@ -45493,14 +45493,16 @@ exports.default = {
   "sort": "Sort",
   "newestFirst": "New to Old",
   "oldestFirst": "Old to New",
-  "save": "Save",
+  "save": "Start Workout",
   "delete": "Delete",
   "textRequired": "Text is required",
   "noRecords": "No workout history is available. Click the button above to begin a workout.",
   "recordCount": "{0} {1} total",
   "record": "workout",
   "records": "workouts",
-  "recordList": "Workout History"
+  "recordList": "Workout History",
+  "exercises": "Exercises (one per line)",
+  "interval": "Interval (seconds)"
 };
 
 },{}],116:[function(require,module,exports){

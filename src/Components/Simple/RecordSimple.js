@@ -5,11 +5,9 @@ import T from '../../localization/i18n';
 function RecordSimple(props) {
   return (
     <div className="columns is-mobile">
-      <div className="column">
-        <Link to={"./record/" + props.record.id}>
-          {props.record.isComplete
-            ? <del>{props.record.text}</del>
-            : <p>{props.record.text}</p>}
+      <div className="column contains-text-overflow">
+        <Link to={"./record/" + props.record.id} className="is-text-overflow-ellipsis">
+          {props.record.text}
         </Link>
       </div>
       <div className="column is-narrow">

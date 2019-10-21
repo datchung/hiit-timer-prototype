@@ -44980,19 +44980,11 @@ function RecordSimple(props) {
     { className: 'columns is-mobile' },
     _react2.default.createElement(
       'div',
-      { className: 'column' },
+      { className: 'column contains-text-overflow' },
       _react2.default.createElement(
         _reactRouterDom.Link,
-        { to: "./record/" + props.record.id },
-        props.record.isComplete ? _react2.default.createElement(
-          'del',
-          null,
-          props.record.text
-        ) : _react2.default.createElement(
-          'p',
-          null,
-          props.record.text
-        )
+        { to: "./record/" + props.record.id, className: 'is-text-overflow-ellipsis' },
+        props.record.text
       )
     ),
     _react2.default.createElement(

@@ -25,7 +25,7 @@ function RecordListPage(props) {
       </div>
       <div className="columns is-mobile">
         <div className="column">
-          <h4 className="title is-4">{T.t("recordList")}</h4>
+          <h5 className="title is-5">{T.t("recordList")}</h5>
         </div>
       </div>
 

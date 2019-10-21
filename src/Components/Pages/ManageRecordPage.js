@@ -23,7 +23,7 @@ function ManageRecordPage(props) {
       </div>
       <div className="columns is-mobile">
         <div className="column">
-          <h4 className="title is-4">{subTitle}</h4>
+          <h5 className="title is-5">{subTitle}</h5>
         </div>
       </div>
 

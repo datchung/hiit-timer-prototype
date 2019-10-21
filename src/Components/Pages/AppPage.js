@@ -12,7 +12,7 @@ function AppPage(props) {
       <div className="columns is-mobile has-background-light">
         <div className="column">
           <img src="images/checked.svg" width="20" />
-          <span className="title is-4">&nbsp;{T.t("title")}</span>
+          <span className="title is-6">&nbsp;{T.t("title")}</span>
         </div>
       </div>
       <Switch>

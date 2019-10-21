@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import RecordList from '../Smart/RecordList';
-import RecordCount from '../Smart/RecordCount';
+// import RecordCount from '../Smart/RecordCount';
 import FilterSort from '../Smart/FilterSort';
 import T from '../../Localization/i18n';
 
@@ -16,19 +16,27 @@ function RecordListPage(props) {
 
   return (
     <React.Fragment>
-      <RecordCount {...props} />
+      <div className="columns is-mobile">
+        <div className="column">
+          <Link to="/">
+            <button className="button">{T.t("back")}</button>
+          </Link>
+        </div>
+      </div>
+      <div className="columns is-mobile">
+        <div className="column">
+          <h4 className="title is-4">{T.t("recordList")}</h4>
+        </div>
+      </div>
+
+      {/* <RecordCount {...props} /> */}
+      
       <FilterSort
         {...props}
         selectedFilter={selectedFilter}
         selectedSort={selectedSort}
         />
-      <div className="card">
-        <div className="card-content">
-          <Link to="./record/manage">
-            <button className="button is-primary is-fullwidth">{T.t("createRecord")}</button>
-          </Link>
-        </div>
-      </div>
+
       <RecordList
         {...props}
         selectedFilter={selectedFilter}

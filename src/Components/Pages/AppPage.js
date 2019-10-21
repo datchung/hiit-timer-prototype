@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import T from '../../Localization/i18n';
+import HomePage from './HomePage';
 import RecordListPage from './RecordListPage';
 import ManageRecordPage from './ManageRecordPage';
 import NotFoundPage from './NotFoundPage';
@@ -15,7 +16,8 @@ function AppPage(props) {
         </div>
       </div>
       <Switch>
-        <Route path="/" exact render={() => <RecordListPage {...props} />} />
+        <Route path="/" exact render={() => <HomePage {...props} />} />
+        <Route path="/records" render={() => <RecordListPage {...props} />} />
         <Route path="/record/manage" render={() => <ManageRecordPage {...props} />} />
         <Route path="/record/:id" render={() => <ManageRecordPage {...props} />} />
         <Route component={NotFoundPage} />

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import RecordList from '../Smart/RecordList';
 // import RecordCount from '../Smart/RecordCount';
 import FilterSort from '../Smart/FilterSort';
@@ -14,13 +14,17 @@ function RecordListPage(props) {
     setSelectedSort(props.filterSort.sort);
   }, [props.filterSort]);
 
+  function onBackClick() {
+    props.history.goBack();
+  }
+
   return (
     <React.Fragment>
       <div className="columns is-mobile">
         <div className="column">
-          <Link to="/">
-            <button className="button">{T.t("back")}</button>
-          </Link>
+          <button className="button" onClick={onBackClick}>
+            {T.t("back")}
+          </button>
         </div>
       </div>
       <div className="columns is-mobile">
@@ -46,4 +50,4 @@ function RecordListPage(props) {
   );
 }
 
-export default RecordListPage;
+export default withRouter(RecordListPage);

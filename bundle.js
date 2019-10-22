@@ -44201,6 +44201,10 @@ var _ManageRecordPage = require('./ManageRecordPage');
 
 var _ManageRecordPage2 = _interopRequireDefault(_ManageRecordPage);
 
+var _WorkoutProgressPage = require('./WorkoutProgressPage');
+
+var _WorkoutProgressPage2 = _interopRequireDefault(_WorkoutProgressPage);
+
 var _NotFoundPage = require('./NotFoundPage');
 
 var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
@@ -44235,6 +44239,9 @@ function AppPage(props) {
       _react2.default.createElement(_reactRouterDom.Route, { path: '/records', render: function render() {
           return _react2.default.createElement(_RecordListPage2.default, props);
         } }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/record/:id/play', render: function render() {
+          return _react2.default.createElement(_WorkoutProgressPage2.default, props);
+        } }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/record/manage', render: function render() {
           return _react2.default.createElement(_ManageRecordPage2.default, props);
         } }),
@@ -44248,7 +44255,7 @@ function AppPage(props) {
 
 exports.default = AppPage;
 
-},{"../../Localization/i18n":113,"./HomePage":91,"./ManageRecordPage":92,"./NotFoundPage":93,"./RecordListPage":94,"react":70,"react-router-dom":64}],91:[function(require,module,exports){
+},{"../../Localization/i18n":116,"./HomePage":91,"./ManageRecordPage":92,"./NotFoundPage":93,"./RecordListPage":94,"./WorkoutProgressPage":95,"react":70,"react-router-dom":64}],91:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44267,7 +44274,7 @@ var _i18n2 = _interopRequireDefault(_i18n);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function HomePage() {
+function HomePage(props) {
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
@@ -44290,7 +44297,7 @@ function HomePage() {
 
 exports.default = HomePage;
 
-},{"../../Localization/i18n":113,"react":70,"react-router-dom":64}],92:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":70,"react-router-dom":64}],92:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44368,7 +44375,7 @@ function ManageRecordPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageRecordPage);
 
-},{"../../Localization/i18n":113,"../Smart/ManageRecord":99,"react":70,"react-router-dom":64}],93:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Smart/ManageRecord":101,"react":70,"react-router-dom":64}],93:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44399,7 +44406,7 @@ function NotFoundPage() {
 
 exports.default = NotFoundPage;
 
-},{"../../Localization/i18n":113,"react":70}],94:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":70}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44494,7 +44501,57 @@ function RecordListPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(RecordListPage);
 
-},{"../../Localization/i18n":113,"../Smart/FilterSort":98,"../Smart/RecordList":100,"react":70,"react-router-dom":64}],95:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Smart/FilterSort":100,"../Smart/RecordList":102,"react":70,"react-router-dom":64}],95:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = require('react-router-dom');
+
+var _WorkoutProgress = require('../Smart/WorkoutProgress');
+
+var _WorkoutProgress2 = _interopRequireDefault(_WorkoutProgress);
+
+var _i18n = require('../../Localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function WorkoutProgressPage(props) {
+  function onBackClick() {
+    props.history.goBack();
+  }
+
+  return _react2.default.createElement(
+    _react2.default.Fragment,
+    null,
+    _react2.default.createElement(
+      'div',
+      { className: 'columns is-mobile' },
+      _react2.default.createElement(
+        'div',
+        { className: 'column' },
+        _react2.default.createElement(
+          'button',
+          { className: 'button', onClick: onBackClick },
+          _i18n2.default.t("back")
+        )
+      )
+    ),
+    _react2.default.createElement(_WorkoutProgress2.default, props)
+  );
+}
+
+exports.default = (0, _reactRouterDom.withRouter)(WorkoutProgressPage);
+
+},{"../../Localization/i18n":116,"../Smart/WorkoutProgress":103,"react":70,"react-router-dom":64}],96:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44574,7 +44631,7 @@ function FilterSortSimple(props) {
 
 exports.default = FilterSortSimple;
 
-},{"../../Localization/i18n":113,"react":70}],96:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":70}],97:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44664,7 +44721,7 @@ function ManageRecordSimple(props) {
 
 exports.default = ManageRecordSimple;
 
-},{"../../Localization/i18n":113,"react":70}],97:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":70}],98:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44710,7 +44767,39 @@ function RecordListSimple(props) {
 
 exports.default = RecordListSimple;
 
-},{"../smart/Record":102,"react":70}],98:[function(require,module,exports){
+},{"../smart/Record":105,"react":70}],99:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _i18n = require('../../Localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function WorkoutProgressSimple(props) {
+  return _react2.default.createElement(
+    'div',
+    { className: 'columns is-mobile' },
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
+      props.record.text,
+      props.record.intervalSeconds
+    )
+  );
+}
+
+exports.default = WorkoutProgressSimple;
+
+},{"../../Localization/i18n":116,"react":70}],100:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44748,7 +44837,7 @@ function FilterSort(props) {
 
 exports.default = FilterSort;
 
-},{"../Simple/FilterSortSimple":95,"react":70}],99:[function(require,module,exports){
+},{"../Simple/FilterSortSimple":96,"react":70}],101:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44792,11 +44881,6 @@ function ManageRecord(props) {
       record = _useState4[0],
       setRecord = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isEdit = _useState6[0],
-      setIsEdit = _useState6[1];
-
   (0, _react.useEffect)(function () {
     var id = props.match.params.id;
     var recordById = props.records.find(function (t) {
@@ -44804,14 +44888,7 @@ function ManageRecord(props) {
     });
     if (!recordById) return;
 
-    setIsEdit(true);
-    setRecord({
-      id: recordById.id,
-      text: recordById.text,
-      intervalSeconds: recordById.intervalSeconds,
-      dateCreated: recordById.dateCreated,
-      dateModified: recordById.dateModified
-    });
+    setRecord(_extends({}, recordById));
   }, [props.match.params.id]);
 
   function onChange(_ref) {
@@ -44833,9 +44910,8 @@ function ManageRecord(props) {
     event.preventDefault();
     if (!formIsValid()) return;
 
-    if (isEdit) props.onUpdateRecord(record);else props.onAddRecord(record.text, record.intervalSeconds);
-
-    props.history.push("/");
+    props.onAddRecord(record.text, record.intervalSeconds);
+    props.history.push('/record/' + record.id + '/play');
   }
 
   return _react2.default.createElement(_ManageRecordSimple2.default, {
@@ -44848,7 +44924,7 @@ function ManageRecord(props) {
 
 exports.default = ManageRecord;
 
-},{"../../Localization/i18n":113,"../Simple/ManageRecordSimple":96,"react":70}],100:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Simple/ManageRecordSimple":97,"react":70}],102:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44903,7 +44979,61 @@ function RecordList(props) {
 
 exports.default = RecordList;
 
-},{"../Simple/RecordListSimple":97,"react":70}],101:[function(require,module,exports){
+},{"../Simple/RecordListSimple":98,"react":70}],103:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _WorkoutProgressSimple = require('../Simple/WorkoutProgressSimple');
+
+var _WorkoutProgressSimple2 = _interopRequireDefault(_WorkoutProgressSimple);
+
+var _i18n = require('../../Localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function WorkoutProgress(props) {
+  var _useState = (0, _react.useState)({
+    id: null,
+    text: "",
+    intervalSeconds: 30,
+    dateCreated: 0,
+    dateModified: 0
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      record = _useState2[0],
+      setRecord = _useState2[1];
+
+  (0, _react.useEffect)(function () {
+    var id = props.match.params.id;
+    var recordById = props.records.find(function (t) {
+      return t.id === id;
+    });
+    if (!recordById) return;
+
+    setRecord(_extends({}, recordById));
+  }, [props.match.params.id]);
+
+  return _react2.default.createElement(_WorkoutProgressSimple2.default, {
+    record: record
+  });
+}
+
+exports.default = WorkoutProgress;
+
+},{"../../Localization/i18n":116,"../Simple/WorkoutProgressSimple":99,"react":70}],104:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44954,7 +45084,7 @@ function RecordSimple(props) {
 
 exports.default = RecordSimple;
 
-},{"../../localization/i18n":121,"react":70,"react-router-dom":64}],102:[function(require,module,exports){
+},{"../../localization/i18n":124,"react":70,"react-router-dom":64}],105:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44981,7 +45111,7 @@ function Record(props) {
 
 exports.default = Record;
 
-},{"../simple/RecordSimple":101,"react":70}],103:[function(require,module,exports){
+},{"../simple/RecordSimple":104,"react":70}],106:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44992,7 +45122,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":28}],104:[function(require,module,exports){
+},{"flux":28}],107:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45005,7 +45135,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],105:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45039,7 +45169,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"../Dispatcher":103,"./FilterSortActionTypes":104}],106:[function(require,module,exports){
+},{"../Dispatcher":106,"./FilterSortActionTypes":107}],109:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45077,7 +45207,7 @@ var FilterSortPersistence = function () {
 
 exports.default = FilterSortPersistence;
 
-},{}],107:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45163,7 +45293,7 @@ var FilterSortStore = function (_ReduceStore) {
 
 exports.default = new FilterSortStore();
 
-},{"../Dispatcher":103,"./FilterSortActionTypes":104,"./FilterSortPersistence":106,"flux/utils":37}],108:[function(require,module,exports){
+},{"../Dispatcher":106,"./FilterSortActionTypes":107,"./FilterSortPersistence":109,"flux/utils":37}],111:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45186,7 +45316,7 @@ var Record = _immutable2.default.Record({
 
 exports.default = Record;
 
-},{"immutable":45}],109:[function(require,module,exports){
+},{"immutable":45}],112:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45201,7 +45331,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],110:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45242,7 +45372,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"../Dispatcher":103,"./RecordActionTypes":109}],111:[function(require,module,exports){
+},{"../Dispatcher":106,"./RecordActionTypes":112}],114:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45277,7 +45407,7 @@ var RecordPersistence = function () {
 
 exports.default = RecordPersistence;
 
-},{}],112:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45397,7 +45527,7 @@ var RecordStore = function (_ReduceStore) {
 
 exports.default = new RecordStore();
 
-},{"../Dispatcher":103,"./Record":108,"./RecordActionTypes":109,"./RecordPersistence":111,"flux/utils":37,"uuid":82}],113:[function(require,module,exports){
+},{"../Dispatcher":106,"./Record":111,"./RecordActionTypes":112,"./RecordPersistence":114,"flux/utils":37,"uuid":82}],116:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45468,7 +45598,7 @@ var i18nOptions = {
 exports.i18nOptions = i18nOptions;
 exports.default = _i18next2.default;
 
-},{"./strings_cn":114,"./strings_en":115,"./strings_es":116,"./strings_fr":117,"./strings_pt":118,"./strings_ru":119,"i18next":44,"i18next-browser-languagedetector":43}],114:[function(require,module,exports){
+},{"./strings_cn":117,"./strings_en":118,"./strings_es":119,"./strings_fr":120,"./strings_pt":121,"./strings_ru":122,"i18next":44,"i18next-browser-languagedetector":43}],117:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45476,7 +45606,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {};
 
-},{}],115:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45505,30 +45635,6 @@ exports.default = {
   "interval": "Interval (seconds)"
 };
 
-},{}],116:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {};
-
-},{}],117:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {};
-
-},{}],118:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {};
-
 },{}],119:[function(require,module,exports){
 "use strict";
 
@@ -45538,6 +45644,30 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {};
 
 },{}],120:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
+
+},{}],121:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
+
+},{}],122:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
+
+},{}],123:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45588,21 +45718,21 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../Components/Pages/AppPage":90,"../Data/FilterSort/FilterSortActions":105,"../Data/FilterSort/FilterSortStore":107,"../Data/Record/RecordActions":110,"../Data/Record/RecordStore":112,"flux/utils":37}],121:[function(require,module,exports){
-arguments[4][113][0].apply(exports,arguments)
-},{"./strings_cn":122,"./strings_en":123,"./strings_es":124,"./strings_fr":125,"./strings_pt":126,"./strings_ru":127,"dup":113,"i18next":44,"i18next-browser-languagedetector":43}],122:[function(require,module,exports){
-arguments[4][114][0].apply(exports,arguments)
-},{"dup":114}],123:[function(require,module,exports){
-arguments[4][115][0].apply(exports,arguments)
-},{"dup":115}],124:[function(require,module,exports){
+},{"../Components/Pages/AppPage":90,"../Data/FilterSort/FilterSortActions":108,"../Data/FilterSort/FilterSortStore":110,"../Data/Record/RecordActions":113,"../Data/Record/RecordStore":115,"flux/utils":37}],124:[function(require,module,exports){
 arguments[4][116][0].apply(exports,arguments)
-},{"dup":116}],125:[function(require,module,exports){
+},{"./strings_cn":125,"./strings_en":126,"./strings_es":127,"./strings_fr":128,"./strings_pt":129,"./strings_ru":130,"dup":116,"i18next":44,"i18next-browser-languagedetector":43}],125:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
 },{"dup":117}],126:[function(require,module,exports){
 arguments[4][118][0].apply(exports,arguments)
 },{"dup":118}],127:[function(require,module,exports){
 arguments[4][119][0].apply(exports,arguments)
 },{"dup":119}],128:[function(require,module,exports){
+arguments[4][120][0].apply(exports,arguments)
+},{"dup":120}],129:[function(require,module,exports){
+arguments[4][121][0].apply(exports,arguments)
+},{"dup":121}],130:[function(require,module,exports){
+arguments[4][122][0].apply(exports,arguments)
+},{"dup":122}],131:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -45640,4 +45770,4 @@ _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   ), document.getElementById("appContainer"));
 });
 
-},{"./containers/AppContainer":120,"./localization/i18n":121,"react":70,"react-dom":58,"react-router-dom":64}]},{},[128]);
+},{"./containers/AppContainer":123,"./localization/i18n":124,"react":70,"react-dom":58,"react-router-dom":64}]},{},[131]);

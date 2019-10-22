@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import T from '../../Localization/i18n';
 
-function HomePage() {
+function HomePage(props) {
   return (
     <React.Fragment>
       <div className="buttons">

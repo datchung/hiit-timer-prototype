@@ -11,21 +11,13 @@ function ManageRecord(props) {
     dateCreated: 0,
     dateModified: 0,
   });
-  const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
     const id = props.match.params.id;
     var recordById = props.records.find(t => t.id === id);
     if(!recordById) return;
 
-    setIsEdit(true);
-    setRecord({
-      id: recordById.id,
-      text: recordById.text,
-      intervalSeconds: recordById.intervalSeconds,
-      dateCreated: recordById.dateCreated,
-      dateModified: recordById.dateModified
-    });
+    setRecord({...recordById});
   }, [props.match.params.id]);
 
   function onChange({ target }) {
@@ -48,12 +40,8 @@ function ManageRecord(props) {
     event.preventDefault();
     if (!formIsValid()) return;
 
-    if(isEdit)
-      props.onUpdateRecord(record);
-    else
-      props.onAddRecord(record.text, record.intervalSeconds);
-
-    props.history.push("/");
+    props.onAddRecord(record.text, record.intervalSeconds);
+    props.history.push(`/record/${record.id}/play`);
   }
 
   return (

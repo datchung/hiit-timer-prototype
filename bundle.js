@@ -44788,16 +44788,30 @@ function WorkoutProgressSimple(props) {
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
-    _react2.default.createElement(
-      'div',
-      { className: 'columns is-mobile' },
-      _react2.default.createElement(
+    props.items.map(function (item) {
+      if (!item.hasPlayed && !item.isPlaying) return null;
+
+      return _react2.default.createElement(
         'div',
-        { className: 'column' },
-        props.record.text,
-        props.record.intervalSeconds
-      )
-    ),
+        {
+          key: item.id + '-' + item.name,
+          className: 'card'
+        },
+        _react2.default.createElement(
+          'div',
+          {
+            className: item.isPlaying ? "card-content has-background-primary" : "card-content"
+          },
+          item.id,
+          '/',
+          props.items.length,
+          ' ',
+          item.name,
+          ' ',
+          item.secondsRemaining
+        )
+      );
+    }),
     _react2.default.createElement(
       'audio',
       { id: 'alarm', controls: 'controls' },
@@ -44920,7 +44934,8 @@ function ManageRecord(props) {
     if (!formIsValid()) return;
 
     props.onAddRecord(record.text, record.intervalSeconds);
-    props.history.push('/record/' + record.id + '/play');
+    var addedRecord = props.records[props.records.length - 1];
+    props.history.push('/record/' + addedRecord.id + '/play');
   }
 
   return _react2.default.createElement(_ManageRecordSimple2.default, {
@@ -45025,6 +45040,11 @@ function WorkoutProgress(props) {
       record = _useState2[0],
       setRecord = _useState2[1];
 
+  var _useState3 = (0, _react.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      recordItems = _useState4[0],
+      setRecordItems = _useState4[1];
+
   (0, _react.useEffect)(function () {
     var id = props.match.params.id;
     var recordById = props.records.find(function (t) {
@@ -45033,10 +45053,26 @@ function WorkoutProgress(props) {
     if (!recordById) return;
 
     setRecord(_extends({}, recordById));
+
+    var i = 0;
+    var items = recordById.text.split("\n").map(function (item) {
+      ++i;
+      return {
+        id: i,
+        name: item,
+        secondsRemaining: recordById.intervalSeconds,
+        isPlaying: i == 1,
+        hasPlayed: false
+      };
+    });
+    console.info("items %o", items);
+
+    setRecordItems(items);
   }, [props.match.params.id]);
 
-  return _react2.default.createElement(_WorkoutProgressSimple2.default, {
-    record: record
+  return _react2.default.createElement(_WorkoutProgressSimple2.default
+  // record={record}
+  , { items: recordItems
   });
 }
 

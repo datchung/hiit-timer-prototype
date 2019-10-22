@@ -10,6 +10,7 @@ function WorkoutProgress(props) {
     dateCreated: 0,
     dateModified: 0,
   });
+  const [recordItems, setRecordItems] = useState([]);
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -17,11 +18,27 @@ function WorkoutProgress(props) {
     if(!recordById) return;
 
     setRecord({...recordById});
+
+    var i = 0;
+    var items = recordById.text.split("\n").map(item => {
+      ++i;
+      return {
+        id: i,
+        name: item,
+        secondsRemaining: recordById.intervalSeconds,
+        isPlaying: i == 1,
+        hasPlayed: false
+      };
+    });
+    console.info("items %o", items);
+
+    setRecordItems(items);
   }, [props.match.params.id]);
 
   return (
     <WorkoutProgressSimple 
-      record={record}
+      // record={record}
+      items={recordItems}
       />
   );
 }

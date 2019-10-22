@@ -41,7 +41,8 @@ function ManageRecord(props) {
     if (!formIsValid()) return;
 
     props.onAddRecord(record.text, record.intervalSeconds);
-    props.history.push(`/record/${record.id}/play`);
+    var addedRecord = props.records[props.records.length - 1];
+    props.history.push(`/record/${addedRecord.id}/play`);
   }
 
   return (

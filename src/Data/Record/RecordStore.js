@@ -37,25 +37,6 @@ class RecordStore extends ReduceStore {
         RecordPersistence.saveRecords(modifiedState);
         return modifiedState;
       
-      case RecordActionTypes.UPDATE_RECORD:
-          var record = state.find(s => s.id === action.record.id);
-          if(!record) return state;
-  
-          var modifiedState = state.map(s => {
-            if(s.id !== action.record.id) return s;
-            
-            return new Record({
-              id: s.id,
-              text: action.record.text,
-              intervalSeconds: action.record.intervalSeconds,
-              dateCreated: s.dateCreated,
-              dateModified: DateTimeModule.getNowMs()
-            });
-          });
-  
-          RecordPersistence.saveRecords(modifiedState);
-          return modifiedState;
-
       case RecordActionTypes.DELETE_RECORD:
         if(!state.find(s => s.id === action.id)) return state;
 

@@ -1,8 +1,6 @@
 const ActionTypes = {
   ADD_RECORD: 'ADD_RECORD',
-  UPDATE_RECORD: 'UPDATE_RECORD',
   DELETE_RECORD: 'DELETE_RECORD',
-  TOGGLE_RECORD: 'TOGGLE_RECORD',
 };
 
 export default ActionTypes;

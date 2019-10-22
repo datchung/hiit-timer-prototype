@@ -45339,9 +45339,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var ActionTypes = {
   ADD_RECORD: 'ADD_RECORD',
-  UPDATE_RECORD: 'UPDATE_RECORD',
-  DELETE_RECORD: 'DELETE_RECORD',
-  TOGGLE_RECORD: 'TOGGLE_RECORD'
+  DELETE_RECORD: 'DELETE_RECORD'
 };
 
 exports.default = ActionTypes;
@@ -45369,12 +45367,6 @@ var Actions = {
       type: _RecordActionTypes2.default.ADD_RECORD,
       text: text,
       intervalSeconds: intervalSeconds
-    });
-  },
-  updateRecord: function updateRecord(record) {
-    _Dispatcher2.default.dispatch({
-      type: _RecordActionTypes2.default.UPDATE_RECORD,
-      record: record
     });
   },
   deleteRecord: function deleteRecord(id) {
@@ -45498,27 +45490,6 @@ var RecordStore = function (_ReduceStore) {
             dateCreated: dateCreated,
             dateModified: dateCreated
           })]);
-
-          _RecordPersistence2.default.saveRecords(modifiedState);
-          return modifiedState;
-
-        case _RecordActionTypes2.default.UPDATE_RECORD:
-          var record = state.find(function (s) {
-            return s.id === action.record.id;
-          });
-          if (!record) return state;
-
-          var modifiedState = state.map(function (s) {
-            if (s.id !== action.record.id) return s;
-
-            return new _Record2.default({
-              id: s.id,
-              text: action.record.text,
-              intervalSeconds: action.record.intervalSeconds,
-              dateCreated: s.dateCreated,
-              dateModified: _DateTimeModule2.default.getNowMs()
-            });
-          });
 
           _RecordPersistence2.default.saveRecords(modifiedState);
           return modifiedState;

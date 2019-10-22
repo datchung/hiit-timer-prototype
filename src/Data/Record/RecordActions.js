@@ -9,12 +9,6 @@ const Actions = {
       intervalSeconds,
     });
   },
-  updateRecord(record) {
-    Dispatcher.dispatch({
-      type: ActionTypes.UPDATE_RECORD,
-      record,
-    });
-  },
   deleteRecord(id) {
     Dispatcher.dispatch({
       type: ActionTypes.DELETE_RECORD,

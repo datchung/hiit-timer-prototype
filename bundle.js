@@ -45046,6 +45046,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = require('react-router-dom');
 
+var _DateTimeModule = require('../../Modules/DateTimeModule');
+
+var _DateTimeModule2 = _interopRequireDefault(_DateTimeModule);
+
 var _i18n = require('../../localization/i18n');
 
 var _i18n2 = _interopRequireDefault(_i18n);
@@ -45061,7 +45065,12 @@ function RecordSimple(props) {
       { className: 'column contains-text-overflow' },
       _react2.default.createElement(
         _reactRouterDom.Link,
-        { to: "./record/" + props.record.id, className: 'is-text-overflow-ellipsis' },
+        {
+          to: "./record/" + props.record.id,
+          className: 'is-text-overflow-ellipsis'
+        },
+        _DateTimeModule2.default.getLocalString(props.record.dateCreated),
+        _react2.default.createElement('br', null),
         props.record.text
       )
     ),
@@ -45084,7 +45093,7 @@ function RecordSimple(props) {
 
 exports.default = RecordSimple;
 
-},{"../../localization/i18n":124,"react":70,"react-router-dom":64}],105:[function(require,module,exports){
+},{"../../Modules/DateTimeModule":123,"../../localization/i18n":125,"react":70,"react-router-dom":64}],105:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45438,6 +45447,10 @@ var _RecordPersistence = require('./RecordPersistence');
 
 var _RecordPersistence2 = _interopRequireDefault(_RecordPersistence);
 
+var _DateTimeModule = require('../../Modules/DateTimeModule');
+
+var _DateTimeModule2 = _interopRequireDefault(_DateTimeModule);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -45471,7 +45484,7 @@ var RecordStore = function (_ReduceStore) {
           if (!action.text) {
             return state;
           }
-          var dateCreated = +new Date();
+          var dateCreated = _DateTimeModule2.default.getNowMs();
           var modifiedState = [].concat(_toConsumableArray(state), [new _Record2.default({
             id: (0, _uuid2.default)(),
             text: action.text,
@@ -45497,7 +45510,7 @@ var RecordStore = function (_ReduceStore) {
               text: action.record.text,
               intervalSeconds: action.record.intervalSeconds,
               dateCreated: s.dateCreated,
-              dateModified: +new Date()
+              dateModified: _DateTimeModule2.default.getNowMs()
             });
           });
 
@@ -45527,7 +45540,7 @@ var RecordStore = function (_ReduceStore) {
 
 exports.default = new RecordStore();
 
-},{"../Dispatcher":106,"./Record":111,"./RecordActionTypes":112,"./RecordPersistence":114,"flux/utils":37,"uuid":82}],116:[function(require,module,exports){
+},{"../../Modules/DateTimeModule":123,"../Dispatcher":106,"./Record":111,"./RecordActionTypes":112,"./RecordPersistence":114,"flux/utils":37,"uuid":82}],116:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45668,6 +45681,32 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {};
 
 },{}],123:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var DateTimeModule = function () {
+  function getNowMs() {
+    return +new Date();
+  }
+
+  function getLocalString(ms) {
+    var date = new Date(ms);
+    return date.toDateString();
+    //return date.toLocaleDateString();
+    //return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  }
+
+  return {
+    getNowMs: getNowMs,
+    getLocalString: getLocalString
+  };
+}();
+
+exports.default = DateTimeModule;
+
+},{}],124:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45718,21 +45757,21 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../Components/Pages/AppPage":90,"../Data/FilterSort/FilterSortActions":108,"../Data/FilterSort/FilterSortStore":110,"../Data/Record/RecordActions":113,"../Data/Record/RecordStore":115,"flux/utils":37}],124:[function(require,module,exports){
+},{"../Components/Pages/AppPage":90,"../Data/FilterSort/FilterSortActions":108,"../Data/FilterSort/FilterSortStore":110,"../Data/Record/RecordActions":113,"../Data/Record/RecordStore":115,"flux/utils":37}],125:[function(require,module,exports){
 arguments[4][116][0].apply(exports,arguments)
-},{"./strings_cn":125,"./strings_en":126,"./strings_es":127,"./strings_fr":128,"./strings_pt":129,"./strings_ru":130,"dup":116,"i18next":44,"i18next-browser-languagedetector":43}],125:[function(require,module,exports){
+},{"./strings_cn":126,"./strings_en":127,"./strings_es":128,"./strings_fr":129,"./strings_pt":130,"./strings_ru":131,"dup":116,"i18next":44,"i18next-browser-languagedetector":43}],126:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
-},{"dup":117}],126:[function(require,module,exports){
+},{"dup":117}],127:[function(require,module,exports){
 arguments[4][118][0].apply(exports,arguments)
-},{"dup":118}],127:[function(require,module,exports){
+},{"dup":118}],128:[function(require,module,exports){
 arguments[4][119][0].apply(exports,arguments)
-},{"dup":119}],128:[function(require,module,exports){
+},{"dup":119}],129:[function(require,module,exports){
 arguments[4][120][0].apply(exports,arguments)
-},{"dup":120}],129:[function(require,module,exports){
+},{"dup":120}],130:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
-},{"dup":121}],130:[function(require,module,exports){
+},{"dup":121}],131:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],131:[function(require,module,exports){
+},{"dup":122}],132:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -45770,4 +45809,4 @@ _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   ), document.getElementById("appContainer"));
 });
 
-},{"./containers/AppContainer":123,"./localization/i18n":124,"react":70,"react-dom":58,"react-router-dom":64}]},{},[131]);
+},{"./containers/AppContainer":124,"./localization/i18n":125,"react":70,"react-dom":58,"react-router-dom":64}]},{},[132]);

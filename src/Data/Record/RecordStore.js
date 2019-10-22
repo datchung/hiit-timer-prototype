@@ -4,6 +4,7 @@ import RecordActionTypes from './RecordActionTypes';
 import Dispatcher from '../Dispatcher';
 import Record from './Record';
 import RecordPersistence from './RecordPersistence';
+import DateTimeModule from '../../Modules/DateTimeModule'
 
 class RecordStore extends ReduceStore {
   constructor() {
@@ -21,7 +22,7 @@ class RecordStore extends ReduceStore {
         if (!action.text) {
           return state;
         }
-        var dateCreated = + new Date();
+        var dateCreated = DateTimeModule.getNowMs();
         var modifiedState = [
           ...state, 
           new Record({
@@ -48,7 +49,7 @@ class RecordStore extends ReduceStore {
               text: action.record.text,
               intervalSeconds: action.record.intervalSeconds,
               dateCreated: s.dateCreated,
-              dateModified: + new Date()
+              dateModified: DateTimeModule.getNowMs()
             });
           });
   

@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import DateTimeModule from '../../Modules/DateTimeModule';
 import T from '../../localization/i18n';
 
 function RecordSimple(props) {
   return (
     <div className="columns is-mobile">
       <div className="column contains-text-overflow">
-        <Link to={"./record/" + props.record.id} className="is-text-overflow-ellipsis">
+        <Link
+          to={"./record/" + props.record.id}
+          className="is-text-overflow-ellipsis"
+          >
+          {DateTimeModule.getLocalString(props.record.dateCreated)}
+          <br/>
           {props.record.text}
         </Link>
       </div>

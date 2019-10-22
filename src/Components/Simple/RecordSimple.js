@@ -9,11 +9,13 @@ function RecordSimple(props) {
       <div className="column contains-text-overflow">
         <Link
           to={"./record/" + props.record.id}
-          className="is-text-overflow-ellipsis"
           >
-          {DateTimeModule.getLocalString(props.record.dateCreated)}
-          <br/>
-          {props.record.text}
+          <p className="is-text-overflow-ellipsis">
+            {props.record.text}
+          </p>
+          <p className="is-text-overflow-ellipsis has-text-weight-light">
+            {DateTimeModule.getLocalString(props.record.dateCreated)}
+          </p>
         </Link>
       </div>
       <div className="column is-narrow">

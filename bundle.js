@@ -45066,12 +45066,18 @@ function RecordSimple(props) {
       _react2.default.createElement(
         _reactRouterDom.Link,
         {
-          to: "./record/" + props.record.id,
-          className: 'is-text-overflow-ellipsis'
+          to: "./record/" + props.record.id
         },
-        _DateTimeModule2.default.getLocalString(props.record.dateCreated),
-        _react2.default.createElement('br', null),
-        props.record.text
+        _react2.default.createElement(
+          'p',
+          { className: 'is-text-overflow-ellipsis' },
+          props.record.text
+        ),
+        _react2.default.createElement(
+          'p',
+          { className: 'is-text-overflow-ellipsis has-text-weight-light' },
+          _DateTimeModule2.default.getLocalString(props.record.dateCreated)
+        )
       )
     ),
     _react2.default.createElement(

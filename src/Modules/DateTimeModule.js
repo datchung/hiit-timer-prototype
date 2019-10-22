@@ -6,8 +6,6 @@ var DateTimeModule = (function() {
   function getLocalString(ms) {
     var date = new Date(ms);
     return date.toDateString();
-    //return date.toLocaleDateString();
-    //return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   }
 
   return {

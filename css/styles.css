@@ -2,6 +2,10 @@ body {
   margin: .75rem;
 }
 
+audio {
+  display: none
+}
+
 .contains-text-overflow {
   min-width: 0;
   max-width: 100%;

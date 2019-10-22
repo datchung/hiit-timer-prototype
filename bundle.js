@@ -44786,13 +44786,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function WorkoutProgressSimple(props) {
   return _react2.default.createElement(
-    'div',
-    { className: 'columns is-mobile' },
+    _react2.default.Fragment,
+    null,
     _react2.default.createElement(
       'div',
-      { className: 'column' },
-      props.record.text,
-      props.record.intervalSeconds
+      { className: 'columns is-mobile' },
+      _react2.default.createElement(
+        'div',
+        { className: 'column' },
+        props.record.text,
+        props.record.intervalSeconds
+      )
+    ),
+    _react2.default.createElement(
+      'audio',
+      { id: 'alarm', controls: 'controls' },
+      _react2.default.createElement('source', { id: 'alarm-sound', src: 'assets/alarm.mp3', type: 'audio/mpeg' })
     )
   );
 }

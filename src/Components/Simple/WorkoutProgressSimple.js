@@ -3,12 +3,18 @@ import T from '../../Localization/i18n';
 
 function WorkoutProgressSimple(props) {
   return (
-    <div className="columns is-mobile">
-      <div className="column">
-        {props.record.text}
-        {props.record.intervalSeconds}
+    <React.Fragment>
+      <div className="columns is-mobile">
+        <div className="column">
+          {props.record.text}
+          {props.record.intervalSeconds}
+        </div>
       </div>
-    </div>
+
+      <audio id="alarm" controls="controls">
+        <source id="alarm-sound" src="assets/alarm.mp3" type="audio/mpeg" />
+      </audio>
+    </React.Fragment>
   );
 }
 

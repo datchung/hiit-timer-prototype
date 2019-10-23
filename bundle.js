@@ -55795,20 +55795,13 @@ var _i18n2 = _interopRequireDefault(_i18n);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function WorkoutProgressSimple(props) {
-  if (props.item == null) return null;
-
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
     _react2.default.createElement(
       'p',
       null,
-      props.item.name + ' (' + props.item.secondsRemaining + ')'
-    ),
-    _react2.default.createElement(
-      'audio',
-      { id: 'alarm', controls: 'controls' },
-      _react2.default.createElement('source', { id: 'alarm-sound', src: 'assets/alarm.mp3', type: 'audio/mpeg' })
+      props.name + ' (' + props.secondsRemaining + ')'
     )
   );
 }
@@ -56052,6 +56045,16 @@ function WorkoutProgress(props) {
       intervalId = _useState8[0],
       setIntervalId = _useState8[1];
 
+  var _useState9 = (0, _react.useState)(""),
+      _useState10 = _slicedToArray(_useState9, 2),
+      name = _useState10[0],
+      setName = _useState10[1];
+
+  var _useState11 = (0, _react.useState)(30),
+      _useState12 = _slicedToArray(_useState11, 2),
+      secondsRemaining = _useState12[0],
+      setSecondsRemaining = _useState12[1];
+
   (0, _react.useEffect)(function () {
     var id = props.match.params.id;
     var recordById = props.records.find(function (t) {
@@ -56060,7 +56063,7 @@ function WorkoutProgress(props) {
     if (!recordById) return;
 
     setRecord(_extends({}, recordById));
-    setRecordItemIndex(-1);
+    setRecordItemIndex(0);
 
     var items = recordById.text.split("\n").map(function (item) {
       return {
@@ -56071,7 +56074,10 @@ function WorkoutProgress(props) {
     });
     setRecordItems(items);
 
-    // setIntervalId();
+    setName(items[0].name);
+    setSecondsRemaining(items[0].secondsRemaining);
+
+    setIntervalId(startItem(items[0]));
   }, [props.match.params.id]);
 
   function startItem(item) {
@@ -56081,7 +56087,7 @@ function WorkoutProgress(props) {
       if (item == null) return;
 
       //     showTimerTask(i, tasks.length, tasks[i]);
-      //     timerCountdownId = startTimerCountdown(intervalSeconds);
+      timerCountdownId = startTimerCountdown(item);
 
       // if(++i > tasks.length - 1) {
       // window.clearInterval(intervalId);
@@ -56097,12 +56103,35 @@ function WorkoutProgress(props) {
       //     showTimerTask(i, tasks.length, tasks[i]);
       //     timerCountdownId = startTimerCountdown(intervalSeconds);
       // }
-    }, intervalSeconds * 1000);
+    }, item.secondsTotal * 1000);
   }
 
-  return _react2.default.createElement(_WorkoutProgressSimple2.default, {
-    item: recordItems.length > recordItemIndex ? recordItems[recordItemIndex] : null
-  });
+  function startTimerCountdown() {
+    var timerCountdownId = window.setInterval(function () {
+      if (secondsRemaining < 1) {
+        // Go to next item
+        window.clearInterval(timerCountdownId);
+      } else {
+        setSecondsRemaining(secondsRemaining - 1000);
+      }
+    }, 1000);
+
+    return timerCountdownId;
+  }
+
+  return _react2.default.createElement(
+    _react2.default.Fragment,
+    null,
+    _react2.default.createElement(_WorkoutProgressSimple2.default, {
+      name: name,
+      secondsRemaining: secondsRemaining
+    }),
+    _react2.default.createElement(
+      'audio',
+      { id: 'alarm', controls: 'controls' },
+      _react2.default.createElement('source', { id: 'alarm-sound', src: 'assets/alarm.mp3', type: 'audio/mpeg' })
+    )
+  );
 }
 
 exports.default = WorkoutProgress;

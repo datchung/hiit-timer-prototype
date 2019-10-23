@@ -14,6 +14,8 @@ function WorkoutProgress(props) {
   const [recordItemIndex, setRecordItemIndex] = useState(0)
   const [recordItems, setRecordItems] = useState([]);
   const [intervalId, setIntervalId] = useState(0);
+  const [name, setName] = useState("");
+  const [secondsRemaining, setSecondsRemaining] = useState(30);
   
   useEffect(() => {
     const id = props.match.params.id;
@@ -21,7 +23,7 @@ function WorkoutProgress(props) {
     if(!recordById) return;
 
     setRecord({...recordById});
-    setRecordItemIndex(-1);
+    setRecordItemIndex(0);
 
     var items = recordById.text.split("\n").map(item => {
       return {
@@ -32,7 +34,10 @@ function WorkoutProgress(props) {
     });
     setRecordItems(items);
 
-    // setIntervalId();
+    setName(items[0].name);
+    setSecondsRemaining(items[0].secondsRemaining);
+
+    setIntervalId(startItem(items[0]));
   }, [props.match.params.id]);
 
   function startItem(item) {
@@ -41,9 +46,8 @@ function WorkoutProgress(props) {
 
       if(item == null) return;
 
-
       //     showTimerTask(i, tasks.length, tasks[i]);
-      //     timerCountdownId = startTimerCountdown(intervalSeconds);
+      timerCountdownId = startTimerCountdown(item);
 
       // if(++i > tasks.length - 1) {
         // window.clearInterval(intervalId);
@@ -59,15 +63,34 @@ function WorkoutProgress(props) {
       //     showTimerTask(i, tasks.length, tasks[i]);
       //     timerCountdownId = startTimerCountdown(intervalSeconds);
       // }
-    }, intervalSeconds * 1000);
+    }, item.secondsTotal * 1000);
+  }
+
+  function startTimerCountdown() {
+    var timerCountdownId = window.setInterval(function() {
+      if(secondsRemaining < 1) {
+        // Go to next item
+        window.clearInterval(timerCountdownId);
+      }
+      else {
+        setSecondsRemaining(secondsRemaining - 1000);
+      }
+    }, 1000);
+
+    return timerCountdownId;
   }
 
   return (
-    <WorkoutProgressSimple 
-      item={recordItems.length > recordItemIndex
-        ? recordItems[recordItemIndex]
-        : null}
-      />
+    <React.Fragment>
+      <WorkoutProgressSimple 
+        name={name}
+        secondsRemaining={secondsRemaining}
+        />
+
+      <audio id="alarm" controls="controls">
+        <source id="alarm-sound" src="assets/alarm.mp3" type="audio/mpeg" />
+      </audio>
+    </React.Fragment>
   );
 }
 

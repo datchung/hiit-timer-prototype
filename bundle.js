@@ -55996,8 +55996,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _react = require('react');
@@ -56032,28 +56030,33 @@ function WorkoutProgress(props) {
 
   var _useState3 = (0, _react.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      recordItemIndex = _useState4[0],
-      setRecordItemIndex = _useState4[1];
+      itemIndex = _useState4[0],
+      setItemIndex = _useState4[1];
 
   var _useState5 = (0, _react.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      recordItems = _useState6[0],
-      setRecordItems = _useState6[1];
+      items = _useState6[0],
+      setItems = _useState6[1];
 
   var _useState7 = (0, _react.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       intervalId = _useState8[0],
       setIntervalId = _useState8[1];
 
-  var _useState9 = (0, _react.useState)(""),
+  var _useState9 = (0, _react.useState)(0),
       _useState10 = _slicedToArray(_useState9, 2),
-      name = _useState10[0],
-      setName = _useState10[1];
+      countDownId = _useState10[0],
+      setCountDownId = _useState10[1];
 
-  var _useState11 = (0, _react.useState)(30),
+  var _useState11 = (0, _react.useState)(""),
       _useState12 = _slicedToArray(_useState11, 2),
-      secondsRemaining = _useState12[0],
-      setSecondsRemaining = _useState12[1];
+      name = _useState12[0],
+      setName = _useState12[1];
+
+  var _useState13 = (0, _react.useState)(30),
+      _useState14 = _slicedToArray(_useState13, 2),
+      secondsRemaining = _useState14[0],
+      setSecondsRemaining = _useState14[1];
 
   (0, _react.useEffect)(function () {
     var id = props.match.params.id;
@@ -56062,62 +56065,122 @@ function WorkoutProgress(props) {
     });
     if (!recordById) return;
 
-    setRecord(_extends({}, recordById));
-    setRecordItemIndex(0);
-
-    var items = recordById.text.split("\n").map(function (item) {
+    var myItems = recordById.text.split("\n").map(function (item) {
       return {
         name: item,
         secondsRemaining: recordById.intervalSeconds,
         secondsTotal: recordById.intervalSeconds
       };
     });
-    setRecordItems(items);
+    if (myItems.length < 1) return;
 
-    setName(items[0].name);
-    setSecondsRemaining(items[0].secondsRemaining);
+    setItems(myItems);
+    setItemIndex(0);
+    setName(myItems[0].name);
+    setSecondsRemaining(myItems[0].secondsRemaining);
 
-    setIntervalId(startItem(items[0]));
+    // if(intervalId < 1)
+    //   setIntervalId(startItem(myItems[0]));
+
+    var iid = setInterval(timer, 1000);
+    setIntervalId(iid);
   }, [props.match.params.id]);
 
-  function startItem(item) {
-    return window.setInterval(function () {
-      document.getElementById('alarm').play();
+  function timer() {
+    var newCount = secondsRemaining - 1;
+    if (newCount >= 0) {
+      console.info("newCount %o", newCount);
+      setSecondsRemaining(newCount);
+    } else {
+      console.info("done count %o", intervalId);
+      clearInterval(intervalId);
+    }
+  };
 
-      if (item == null) return;
+  // function decrementSecondsRemaining() {
+  //   console.info(secondsRemaining - 1);
+  //   setSecondsRemaining(secondsRemaining - 1);
+  // }
 
-      //     showTimerTask(i, tasks.length, tasks[i]);
-      timerCountdownId = startTimerCountdown(item);
+  // function startItem(item) {
+  //   console.info("startItem");
 
-      // if(++i > tasks.length - 1) {
-      // window.clearInterval(intervalId);
-      // window.clearInterval(timerCountdownId);
-      // resetKeepScreenOn();
-      // showTimerDone();
+  //   if(item == null) return;
 
-      // window.setTimeout(function() {
-      //     showConfiguration();
-      // }, 1500);
-      // }
-      // else {
-      //     showTimerTask(i, tasks.length, tasks[i]);
-      //     timerCountdownId = startTimerCountdown(intervalSeconds);
-      // }
-    }, item.secondsTotal * 1000);
-  }
+  //   // Start countdown
+  //   setCountDownId(window.setInterval(decrementSecondsRemaining, 1000));
 
-  function startTimerCountdown() {
-    var timerCountdownId = window.setInterval(function () {
-      if (secondsRemaining < 1) {
-        // Go to next item
-        window.clearInterval(timerCountdownId);
-      } else {
-        setSecondsRemaining(secondsRemaining - 1000);
-      }
-    }, 1000);
+  //   return window.setInterval(function() {
+  //     // document.getElementById('alarm').play();
 
-    return timerCountdownId;
-  }
+  //     // Go to next item
+  //     window.clearInterval(countDownId);
+  //     console.info("goToNextItem")
+  //   }, item.secondsTotal * 1000);
+  // }
+
+  // useEffect(() => {
+  //   const id = props.match.params.id;
+  //   var recordById = props.records.find(t => t.id === id);
+  //   if(!recordById) return;
+
+  //   setRecord({...recordById});
+  //   setRecordItemIndex(0);
+
+  //   var items = recordById.text.split("\n").map(item => {
+  //     return {
+  //       name: item,
+  //       secondsRemaining: recordById.intervalSeconds,
+  //       secondsTotal: recordById.intervalSeconds,
+  //     };
+  //   });
+  //   setRecordItems(items);
+
+  //   setName(items[0].name);
+  //   setSecondsRemaining(items[0].secondsRemaining);
+
+  //   setIntervalId(startItem(items[0]));
+  // }, [props.match.params.id]);
+
+  // function startItem(item) {
+  //   return window.setInterval(function() {
+  //     document.getElementById('alarm').play();
+
+  //     if(item == null) return;
+
+  //     //     showTimerTask(i, tasks.length, tasks[i]);
+  //     timerCountdownId = startTimerCountdown(item);
+
+  //     // if(++i > tasks.length - 1) {
+  //       // window.clearInterval(intervalId);
+  //       // window.clearInterval(timerCountdownId);
+  //       // resetKeepScreenOn();
+  //       // showTimerDone();
+
+  //       // window.setTimeout(function() {
+  //       //     showConfiguration();
+  //       // }, 1500);
+  //     // }
+  //     // else {
+  //     //     showTimerTask(i, tasks.length, tasks[i]);
+  //     //     timerCountdownId = startTimerCountdown(intervalSeconds);
+  //     // }
+  //   }, item.secondsTotal * 1000);
+  // }
+
+  // function startTimerCountdown() {
+  //   var timerCountdownId = window.setInterval(function() {
+  //     if(secondsRemaining < 1) {
+  //       // Go to next item
+  //       window.clearInterval(timerCountdownId);
+  //     }
+  //     else {
+  //       setSecondsRemaining(secondsRemaining - 1000);
+  //     }
+  //   }, 1000);
+
+  //   return timerCountdownId;
+  // }
 
   return _react2.default.createElement(
     _react2.default.Fragment,

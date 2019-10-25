@@ -55948,6 +55948,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -56046,8 +56048,8 @@ var WorkoutProgress = function (_React$Component) {
                 return !str || !str.trim();
             };
 
-            var intervalId;
-            var timerCountdownId;
+            //var intervalId;
+            //var timerCountdownId;
 
             console.info('Start clicked');
 
@@ -56075,21 +56077,29 @@ var WorkoutProgress = function (_React$Component) {
 
             var i = 0;
             showTimerTask(i, tasks.length, tasks[i]);
-            timerCountdownId = startTimerCountdown(intervalSeconds);
 
-            intervalId = window.setInterval(function () {
-                document.getElementById('alarm').play();
+            this.setState(_extends({}, this.state, {
+                timerCountdownId: startTimerCountdown(intervalSeconds)
+            }));
 
-                if (++i > tasks.length - 1) {
-                    window.clearInterval(intervalId);
-                    window.clearInterval(timerCountdownId);
-                    this.resetKeepScreenOn();
-                    showTimerDone();
-                } else {
-                    showTimerTask(i, tasks.length, tasks[i]);
-                    timerCountdownId = startTimerCountdown(intervalSeconds);
-                }
-            }, intervalSeconds * 1000);
+            var self = this;
+            this.setState(_extends({}, this.state, {
+                intervalId: window.setInterval(function () {
+                    document.getElementById('alarm').play();
+
+                    if (++i > tasks.length - 1) {
+                        window.clearInterval(self.state.intervalId);
+                        window.clearInterval(self.state.timerCountdownId);
+                        self.resetKeepScreenOn();
+                        showTimerDone();
+                    } else {
+                        showTimerTask(i, tasks.length, tasks[i]);
+                        self.setState(_extends({}, self.state, {
+                            timerCountdownId: startTimerCountdown(intervalSeconds)
+                        }));
+                    }
+                }, intervalSeconds * 1000)
+            }));
         }
     }, {
         key: 'componentWillUnmount',
@@ -56101,11 +56111,11 @@ var WorkoutProgress = function (_React$Component) {
         value: function onBackClick() {
             console.log('Stop clicked');
 
-            window.clearInterval(intervalId);
-            window.clearInterval(timerCountdownId);
+            window.clearInterval(this.state.intervalId);
+            window.clearInterval(this.state.timerCountdownId);
             this.resetKeepScreenOn();
 
-            props.history.goBack();
+            this.props.history.goBack();
         }
     }, {
         key: 'keepScreenOn',

@@ -75,8 +75,8 @@ class WorkoutProgress extends React.Component {
         return !str || !str.trim();
     };
 
-    var intervalId;
-    var timerCountdownId;
+    //var intervalId;
+    //var timerCountdownId;
 
     console.info('Start clicked');
 
@@ -100,22 +100,33 @@ class WorkoutProgress extends React.Component {
 
     var i = 0;
     showTimerTask(i, tasks.length, tasks[i]);
-    timerCountdownId = startTimerCountdown(intervalSeconds);
+    
+    this.setState({
+      ...this.state,
+      timerCountdownId: startTimerCountdown(intervalSeconds)
+    });
 
-    intervalId = window.setInterval(function() {
+    var self = this;
+    this.setState({
+      ...this.state,
+      intervalId: window.setInterval(function() {
         document.getElementById('alarm').play();
 
         if(++i > tasks.length - 1) {
-            window.clearInterval(intervalId);
-            window.clearInterval(timerCountdownId);
-            this.resetKeepScreenOn();
+            window.clearInterval(self.state.intervalId);
+            window.clearInterval(self.state.timerCountdownId);
+            self.resetKeepScreenOn();
             showTimerDone();
         }
         else {
             showTimerTask(i, tasks.length, tasks[i]);
-            timerCountdownId = startTimerCountdown(intervalSeconds);
+            self.setState({
+              ...self.state,
+              timerCountdownId: startTimerCountdown(intervalSeconds)
+            });
         }
-    }, intervalSeconds * 1000);
+      }, intervalSeconds * 1000)
+  });
   }
 
   componentWillUnmount() {
@@ -125,11 +136,11 @@ class WorkoutProgress extends React.Component {
   onBackClick() {
     console.log('Stop clicked');
 
-    window.clearInterval(intervalId);
-    window.clearInterval(timerCountdownId);
+    window.clearInterval(this.state.intervalId);
+    window.clearInterval(this.state.timerCountdownId);
     this.resetKeepScreenOn();
 
-    props.history.goBack();
+    this.props.history.goBack();
   }
 
   keepScreenOn() {

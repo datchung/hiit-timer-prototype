@@ -55265,7 +55265,7 @@ function AppPage(props) {
 
 exports.default = AppPage;
 
-},{"../../Localization/i18n":117,"./HomePage":92,"./ManageRecordPage":93,"./NotFoundPage":94,"./RecordListPage":95,"./WorkoutProgressPage":96,"react":71,"react-router-dom":65}],92:[function(require,module,exports){
+},{"../../Localization/i18n":116,"./HomePage":92,"./ManageRecordPage":93,"./NotFoundPage":94,"./RecordListPage":95,"./WorkoutProgressPage":96,"react":71,"react-router-dom":65}],92:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55307,7 +55307,7 @@ function HomePage(props) {
 
 exports.default = HomePage;
 
-},{"../../Localization/i18n":117,"react":71,"react-router-dom":65}],93:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":71,"react-router-dom":65}],93:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55385,7 +55385,7 @@ function ManageRecordPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageRecordPage);
 
-},{"../../Localization/i18n":117,"../Smart/ManageRecord":102,"react":71,"react-router-dom":65}],94:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Smart/ManageRecord":101,"react":71,"react-router-dom":65}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55416,7 +55416,7 @@ function NotFoundPage() {
 
 exports.default = NotFoundPage;
 
-},{"../../Localization/i18n":117,"react":71}],95:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":71}],95:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55511,7 +55511,7 @@ function RecordListPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(RecordListPage);
 
-},{"../../Localization/i18n":117,"../Smart/FilterSort":101,"../Smart/RecordList":103,"react":71,"react-router-dom":65}],96:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Smart/FilterSort":100,"../Smart/RecordList":102,"react":71,"react-router-dom":65}],96:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55561,7 +55561,7 @@ function WorkoutProgressPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(WorkoutProgressPage);
 
-},{"../../Localization/i18n":117,"../Smart/WorkoutProgress":104,"react":71,"react-router-dom":65}],97:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Smart/WorkoutProgress":103,"react":71,"react-router-dom":65}],97:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55641,7 +55641,7 @@ function FilterSortSimple(props) {
 
 exports.default = FilterSortSimple;
 
-},{"../../Localization/i18n":117,"react":71}],98:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":71}],98:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55731,7 +55731,7 @@ function ManageRecordSimple(props) {
 
 exports.default = ManageRecordSimple;
 
-},{"../../Localization/i18n":117,"react":71}],99:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":71}],99:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55777,38 +55777,7 @@ function RecordListSimple(props) {
 
 exports.default = RecordListSimple;
 
-},{"../smart/Record":106,"react":71}],100:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _i18n = require('../../Localization/i18n');
-
-var _i18n2 = _interopRequireDefault(_i18n);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function WorkoutProgressSimple(props) {
-  return _react2.default.createElement(
-    _react2.default.Fragment,
-    null,
-    _react2.default.createElement(
-      'p',
-      null,
-      props.name + ' (' + props.secondsRemaining + ')'
-    )
-  );
-}
-
-exports.default = WorkoutProgressSimple;
-
-},{"../../Localization/i18n":117,"react":71}],101:[function(require,module,exports){
+},{"../smart/Record":105,"react":71}],100:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55846,7 +55815,7 @@ function FilterSort(props) {
 
 exports.default = FilterSort;
 
-},{"../Simple/FilterSortSimple":97,"react":71}],102:[function(require,module,exports){
+},{"../Simple/FilterSortSimple":97,"react":71}],101:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55934,7 +55903,7 @@ function ManageRecord(props) {
 
 exports.default = ManageRecord;
 
-},{"../../Localization/i18n":117,"../Simple/ManageRecordSimple":98,"react":71}],103:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Simple/ManageRecordSimple":98,"react":71}],102:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55989,14 +55958,14 @@ function RecordList(props) {
 
 exports.default = RecordList;
 
-},{"../Simple/RecordListSimple":99,"react":71}],104:[function(require,module,exports){
+},{"../Simple/RecordListSimple":99,"react":71}],103:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -56006,200 +55975,203 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _WorkoutProgressSimple = require('../Simple/WorkoutProgressSimple');
-
-var _WorkoutProgressSimple2 = _interopRequireDefault(_WorkoutProgressSimple);
-
 var _i18n = require('../../Localization/i18n');
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function WorkoutProgress(props) {
-  var _useState = (0, _react.useState)({
-    id: null,
-    text: "",
-    intervalSeconds: 30,
-    dateCreated: 0,
-    dateModified: 0
-  }),
-      _useState2 = _slicedToArray(_useState, 2),
-      record = _useState2[0],
-      setRecord = _useState2[1];
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  var _useState3 = (0, _react.useState)(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      itemIndex = _useState4[0],
-      setItemIndex = _useState4[1];
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  var _useState5 = (0, _react.useState)([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      items = _useState6[0],
-      setItems = _useState6[1];
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-  var _useState7 = (0, _react.useState)(0),
-      _useState8 = _slicedToArray(_useState7, 2),
-      intervalId = _useState8[0],
-      setIntervalId = _useState8[1];
+var WorkoutProgress = function (_React$Component) {
+    _inherits(WorkoutProgress, _React$Component);
 
-  var _useState9 = (0, _react.useState)(0),
-      _useState10 = _slicedToArray(_useState9, 2),
-      countDownId = _useState10[0],
-      setCountDownId = _useState10[1];
+    function WorkoutProgress() {
+        _classCallCheck(this, WorkoutProgress);
 
-  var _useState11 = (0, _react.useState)(""),
-      _useState12 = _slicedToArray(_useState11, 2),
-      name = _useState12[0],
-      setName = _useState12[1];
-
-  var _useState13 = (0, _react.useState)(30),
-      _useState14 = _slicedToArray(_useState13, 2),
-      secondsRemaining = _useState14[0],
-      setSecondsRemaining = _useState14[1];
-
-  (0, _react.useEffect)(function () {
-    var id = props.match.params.id;
-    var recordById = props.records.find(function (t) {
-      return t.id === id;
-    });
-    if (!recordById) return;
-
-    var myItems = recordById.text.split("\n").map(function (item) {
-      return {
-        name: item,
-        secondsRemaining: recordById.intervalSeconds,
-        secondsTotal: recordById.intervalSeconds
-      };
-    });
-    if (myItems.length < 1) return;
-
-    setItems(myItems);
-    setItemIndex(0);
-    setName(myItems[0].name);
-    setSecondsRemaining(myItems[0].secondsRemaining);
-
-    // if(intervalId < 1)
-    //   setIntervalId(startItem(myItems[0]));
-
-    var iid = setInterval(timer, 1000);
-    setIntervalId(iid);
-  }, [props.match.params.id]);
-
-  function timer() {
-    var newCount = secondsRemaining - 1;
-    if (newCount >= 0) {
-      console.info("newCount %o", newCount);
-      setSecondsRemaining(newCount);
-    } else {
-      console.info("done count %o", intervalId);
-      clearInterval(intervalId);
+        return _possibleConstructorReturn(this, (WorkoutProgress.__proto__ || Object.getPrototypeOf(WorkoutProgress)).apply(this, arguments));
     }
-  };
 
-  // function decrementSecondsRemaining() {
-  //   console.info(secondsRemaining - 1);
-  //   setSecondsRemaining(secondsRemaining - 1);
-  // }
+    _createClass(WorkoutProgress, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var showTimer = function showTimer() {
+                // $('#configuration').css({ display: 'none' });
+                (0, _jquery2.default)('#timer').css({ display: 'block' });
+            };
 
-  // function startItem(item) {
-  //   console.info("startItem");
+            var showTimerMessage = function showTimerMessage(message) {
+                (0, _jquery2.default)('#timer-display').append('<br/>' + message);
+                (0, _jquery2.default)('html, body').animate({
+                    scrollTop: (0, _jquery2.default)(document).height() - (0, _jquery2.default)(window).height() }, 500);
+            };
 
-  //   if(item == null) return;
+            var showTimerFlash = function showTimerFlash() {
+                (0, _jquery2.default)('body').addClass('background-flash');
+                window.setTimeout(function () {
+                    (0, _jquery2.default)('body').removeClass('background-flash');
+                }, 1000);
+            };
 
-  //   // Start countdown
-  //   setCountDownId(window.setInterval(decrementSecondsRemaining, 1000));
+            var showTimerTask = function showTimerTask(i, total, task) {
+                showTimerMessage(i + 1 + '/' + total + ': ' + task);
+                showTimerFlash();
+            };
 
-  //   return window.setInterval(function() {
-  //     // document.getElementById('alarm').play();
+            var showTimerDone = function showTimerDone(i, total, task) {
+                showTimerMessage('<p>Done</p>');
+                showTimerFlash();
+                showTimerCountdown();
+            };
 
-  //     // Go to next item
-  //     window.clearInterval(countDownId);
-  //     console.info("goToNextItem")
-  //   }, item.secondsTotal * 1000);
-  // }
+            var showTimerCountdown = function showTimerCountdown(timeRemaining) {
+                if (timeRemaining) {
+                    (0, _jquery2.default)('#time-remaining').html('(' + timeRemaining + ')');
+                } else {
+                    (0, _jquery2.default)('#time-remaining').html('');
+                }
+            };
 
-  // useEffect(() => {
-  //   const id = props.match.params.id;
-  //   var recordById = props.records.find(t => t.id === id);
-  //   if(!recordById) return;
+            var startTimerCountdown = function startTimerCountdown(intervalSeconds) {
+                var timeRemaining = intervalSeconds;
+                var timerCountdownId;
 
-  //   setRecord({...recordById});
-  //   setRecordItemIndex(0);
+                showTimerCountdown(timeRemaining--);
+                timerCountdownId = window.setInterval(function () {
+                    if (timeRemaining < 1) {
+                        window.clearInterval(timerCountdownId);
+                    } else {
+                        showTimerCountdown(timeRemaining--);
+                    }
+                }, 1000);
 
-  //   var items = recordById.text.split("\n").map(item => {
-  //     return {
-  //       name: item,
-  //       secondsRemaining: recordById.intervalSeconds,
-  //       secondsTotal: recordById.intervalSeconds,
-  //     };
-  //   });
-  //   setRecordItems(items);
+                return timerCountdownId;
+            };
 
-  //   setName(items[0].name);
-  //   setSecondsRemaining(items[0].secondsRemaining);
+            var keepScreenOn = function keepScreenOn() {
+                if (typeof native !== 'undefined' && native != null) native.KeepScreenOn();
+            };
 
-  //   setIntervalId(startItem(items[0]));
-  // }, [props.match.params.id]);
+            var resetKeepScreenOn = function resetKeepScreenOn() {
+                if (typeof native !== 'undefined' && native != null) native.ResetKeepScreenOn();
+            };
 
-  // function startItem(item) {
-  //   return window.setInterval(function() {
-  //     document.getElementById('alarm').play();
+            var isNullOrWhitespace = function isNullOrWhitespace(str) {
+                return !str || !str.trim();
+            };
 
-  //     if(item == null) return;
+            // TODO type (info, success, warning, danger)
+            // TODO buttons (cancel, ok, etc)
+            // TODO button actions/callbacks
+            var showModal = function showModal(title, body) {
+                (0, _jquery2.default)('#mainModal .modal-title').text(title);
+                (0, _jquery2.default)('#mainModal .modal-body').text(body);
+                (0, _jquery2.default)('#mainModal').modal('show');
+            };
 
-  //     //     showTimerTask(i, tasks.length, tasks[i]);
-  //     timerCountdownId = startTimerCountdown(item);
+            var intervalId;
+            var timerCountdownId;
 
-  //     // if(++i > tasks.length - 1) {
-  //       // window.clearInterval(intervalId);
-  //       // window.clearInterval(timerCountdownId);
-  //       // resetKeepScreenOn();
-  //       // showTimerDone();
+            // $('#start').click(function() {
+            console.info('Start clicked');
 
-  //       // window.setTimeout(function() {
-  //       //     showConfiguration();
-  //       // }, 1500);
-  //     // }
-  //     // else {
-  //     //     showTimerTask(i, tasks.length, tasks[i]);
-  //     //     timerCountdownId = startTimerCountdown(intervalSeconds);
-  //     // }
-  //   }, item.secondsTotal * 1000);
-  // }
+            // Get configuration
+            var id = this.props.match.params.id;
+            var recordById = this.props.records.find(function (t) {
+                return t.id === id;
+            });
+            if (!recordById) return;
 
-  // function startTimerCountdown() {
-  //   var timerCountdownId = window.setInterval(function() {
-  //     if(secondsRemaining < 1) {
-  //       // Go to next item
-  //       window.clearInterval(timerCountdownId);
-  //     }
-  //     else {
-  //       setSecondsRemaining(secondsRemaining - 1000);
-  //     }
-  //   }, 1000);
+            var tasks = recordById.text.split("\n");
+            var intervalSeconds = recordById.intervalSeconds;
 
-  //   return timerCountdownId;
-  // }
+            // Check validity and clean up configuration
+            // tasks = _.filter(tasks, function(task) {
+            //     return !isNullOrWhitespace(task);
+            // });
+            console.info('tasks', tasks);
+            if (tasks.length < 1) {
+                // showModal('No exercises entered', 'Please enter one or more exercieses.');
+                return;
+            }
 
-  return _react2.default.createElement(
-    _react2.default.Fragment,
-    null,
-    _react2.default.createElement(_WorkoutProgressSimple2.default, {
-      name: name,
-      secondsRemaining: secondsRemaining
-    }),
-    _react2.default.createElement(
-      'audio',
-      { id: 'alarm', controls: 'controls' },
-      _react2.default.createElement('source', { id: 'alarm-sound', src: 'assets/alarm.mp3', type: 'audio/mpeg' })
-    )
-  );
-}
+            document.getElementById('alarm').play();
+
+            keepScreenOn();
+            showTimer();
+
+            // Clear previous runs
+            (0, _jquery2.default)('#timer-display').html('');
+
+            var i = 0;
+            showTimerTask(i, tasks.length, tasks[i]);
+            timerCountdownId = startTimerCountdown(intervalSeconds);
+
+            intervalId = window.setInterval(function () {
+                document.getElementById('alarm').play();
+
+                if (++i > tasks.length - 1) {
+                    window.clearInterval(intervalId);
+                    window.clearInterval(timerCountdownId);
+                    resetKeepScreenOn();
+                    showTimerDone();
+
+                    window.setTimeout(function () {
+                        showConfiguration();
+                    }, 1500);
+                } else {
+                    showTimerTask(i, tasks.length, tasks[i]);
+                    timerCountdownId = startTimerCountdown(intervalSeconds);
+                }
+            }, intervalSeconds * 1000);
+            // });
+
+            (0, _jquery2.default)('#stop').click(function () {
+                console.log('Stop clicked');
+
+                showConfiguration();
+
+                window.clearInterval(intervalId);
+                window.clearInterval(timerCountdownId);
+                resetKeepScreenOn();
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                _react2.default.Fragment,
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { id: 'timer' },
+                    _react2.default.createElement(
+                        'button',
+                        { id: 'stop', className: 'btn btn-warning' },
+                        'Stop'
+                    ),
+                    _react2.default.createElement('span', { id: 'timer-display' }),
+                    _react2.default.createElement('span', { id: 'time-remaining' })
+                ),
+                _react2.default.createElement(
+                    'audio',
+                    { id: 'alarm', controls: 'controls' },
+                    _react2.default.createElement('source', { id: 'alarm-sound', src: 'assets/alarm.mp3', type: 'audio/mpeg' })
+                )
+            );
+        }
+    }]);
+
+    return WorkoutProgress;
+}(_react2.default.Component);
 
 exports.default = WorkoutProgress;
 
-},{"../../Localization/i18n":117,"../Simple/WorkoutProgressSimple":100,"jquery":46,"react":71}],105:[function(require,module,exports){
+},{"../../Localization/i18n":116,"jquery":46,"react":71}],104:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56265,7 +56237,7 @@ function RecordSimple(props) {
 
 exports.default = RecordSimple;
 
-},{"../../Modules/DateTimeModule":124,"../../localization/i18n":126,"react":71,"react-router-dom":65}],106:[function(require,module,exports){
+},{"../../Modules/DateTimeModule":123,"../../localization/i18n":125,"react":71,"react-router-dom":65}],105:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56292,7 +56264,7 @@ function Record(props) {
 
 exports.default = Record;
 
-},{"../simple/RecordSimple":105,"react":71}],107:[function(require,module,exports){
+},{"../simple/RecordSimple":104,"react":71}],106:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56303,7 +56275,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":28}],108:[function(require,module,exports){
+},{"flux":28}],107:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56316,7 +56288,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],109:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56350,7 +56322,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"../Dispatcher":107,"./FilterSortActionTypes":108}],110:[function(require,module,exports){
+},{"../Dispatcher":106,"./FilterSortActionTypes":107}],109:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56388,7 +56360,7 @@ var FilterSortPersistence = function () {
 
 exports.default = FilterSortPersistence;
 
-},{}],111:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56474,7 +56446,7 @@ var FilterSortStore = function (_ReduceStore) {
 
 exports.default = new FilterSortStore();
 
-},{"../Dispatcher":107,"./FilterSortActionTypes":108,"./FilterSortPersistence":110,"flux/utils":37}],112:[function(require,module,exports){
+},{"../Dispatcher":106,"./FilterSortActionTypes":107,"./FilterSortPersistence":109,"flux/utils":37}],111:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56497,7 +56469,7 @@ var Record = _immutable2.default.Record({
 
 exports.default = Record;
 
-},{"immutable":45}],113:[function(require,module,exports){
+},{"immutable":45}],112:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56510,7 +56482,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],114:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56545,7 +56517,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"../Dispatcher":107,"./RecordActionTypes":113}],115:[function(require,module,exports){
+},{"../Dispatcher":106,"./RecordActionTypes":112}],114:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56580,7 +56552,7 @@ var RecordPersistence = function () {
 
 exports.default = RecordPersistence;
 
-},{}],116:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56683,7 +56655,7 @@ var RecordStore = function (_ReduceStore) {
 
 exports.default = new RecordStore();
 
-},{"../../Modules/DateTimeModule":124,"../Dispatcher":107,"./Record":112,"./RecordActionTypes":113,"./RecordPersistence":115,"flux/utils":37,"uuid":83}],117:[function(require,module,exports){
+},{"../../Modules/DateTimeModule":123,"../Dispatcher":106,"./Record":111,"./RecordActionTypes":112,"./RecordPersistence":114,"flux/utils":37,"uuid":83}],116:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56754,7 +56726,7 @@ var i18nOptions = {
 exports.i18nOptions = i18nOptions;
 exports.default = _i18next2.default;
 
-},{"./strings_cn":118,"./strings_en":119,"./strings_es":120,"./strings_fr":121,"./strings_pt":122,"./strings_ru":123,"i18next":44,"i18next-browser-languagedetector":43}],118:[function(require,module,exports){
+},{"./strings_cn":117,"./strings_en":118,"./strings_es":119,"./strings_fr":120,"./strings_pt":121,"./strings_ru":122,"i18next":44,"i18next-browser-languagedetector":43}],117:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56762,7 +56734,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {};
 
-},{}],119:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56790,6 +56762,14 @@ exports.default = {
   "exercises": "Exercises (one per line)",
   "interval": "Interval (seconds)"
 };
+
+},{}],119:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {};
 
 },{}],120:[function(require,module,exports){
 "use strict";
@@ -56821,14 +56801,6 @@ exports.default = {};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = {};
-
-},{}],124:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 var DateTimeModule = function () {
   function getNowMs() {
     return +new Date();
@@ -56847,7 +56819,7 @@ var DateTimeModule = function () {
 
 exports.default = DateTimeModule;
 
-},{}],125:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56898,9 +56870,11 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../Components/Pages/AppPage":91,"../Data/FilterSort/FilterSortActions":109,"../Data/FilterSort/FilterSortStore":111,"../Data/Record/RecordActions":114,"../Data/Record/RecordStore":116,"flux/utils":37}],126:[function(require,module,exports){
+},{"../Components/Pages/AppPage":91,"../Data/FilterSort/FilterSortActions":108,"../Data/FilterSort/FilterSortStore":110,"../Data/Record/RecordActions":113,"../Data/Record/RecordStore":115,"flux/utils":37}],125:[function(require,module,exports){
+arguments[4][116][0].apply(exports,arguments)
+},{"./strings_cn":126,"./strings_en":127,"./strings_es":128,"./strings_fr":129,"./strings_pt":130,"./strings_ru":131,"dup":116,"i18next":44,"i18next-browser-languagedetector":43}],126:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
-},{"./strings_cn":127,"./strings_en":128,"./strings_es":129,"./strings_fr":130,"./strings_pt":131,"./strings_ru":132,"dup":117,"i18next":44,"i18next-browser-languagedetector":43}],127:[function(require,module,exports){
+},{"dup":117}],127:[function(require,module,exports){
 arguments[4][118][0].apply(exports,arguments)
 },{"dup":118}],128:[function(require,module,exports){
 arguments[4][119][0].apply(exports,arguments)
@@ -56911,8 +56885,6 @@ arguments[4][121][0].apply(exports,arguments)
 },{"dup":121}],131:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
 },{"dup":122}],132:[function(require,module,exports){
-arguments[4][123][0].apply(exports,arguments)
-},{"dup":123}],133:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -56950,4 +56922,4 @@ _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   ), document.getElementById("appContainer"));
 });
 
-},{"./containers/AppContainer":125,"./localization/i18n":126,"react":71,"react-dom":59,"react-router-dom":65}]},{},[133]);
+},{"./containers/AppContainer":124,"./localization/i18n":125,"react":71,"react-dom":59,"react-router-dom":65}]},{},[132]);

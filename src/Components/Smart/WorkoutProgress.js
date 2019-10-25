@@ -1,158 +1,169 @@
 import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
-import WorkoutProgressSimple from '../Simple/WorkoutProgressSimple';
 import T from '../../Localization/i18n';
 
-function WorkoutProgress(props) {
-  const [record, setRecord] = useState({
-    id: null,
-    text: "",
-    intervalSeconds: 30,
-    dateCreated: 0,
-    dateModified: 0,
-  });
-  const [itemIndex, setItemIndex] = useState(0)
-  const [items, setItems] = useState([]);
-  const [intervalId, setIntervalId] = useState(0);
-  const [countDownId, setCountDownId] = useState(0);
-  const [name, setName] = useState("");
-  const [secondsRemaining, setSecondsRemaining] = useState(30);
-  
-  useEffect(() => {
-    const id = props.match.params.id;
-    var recordById = props.records.find(t => t.id === id);
-    if(!recordById) return;
+class WorkoutProgress extends React.Component {
+  componentDidMount() {
+    var showTimer = function() {
+        // $('#configuration').css({ display: 'none' });
+        $('#timer').css({ display: 'block' });
+    };
 
-    var myItems = recordById.text.split("\n").map(item => {
-      return {
-        name: item,
-        secondsRemaining: recordById.intervalSeconds,
-        secondsTotal: recordById.intervalSeconds,
-      };
+    var showTimerMessage = function(message) {
+        $('#timer-display').append('<br/>' + message);
+        $('html, body').animate({
+            scrollTop: $(document).height()-$(window).height()},
+            500
+        );
+    };
+
+    var showTimerFlash = function() {
+        $('body').addClass('background-flash');
+        window.setTimeout(function() {
+            $('body').removeClass('background-flash');
+        }, 1000);
+    };
+
+    var showTimerTask = function(i, total, task) {
+        showTimerMessage((i + 1) + '/' + total + ': '  + task);
+        showTimerFlash();
+    };
+
+    var showTimerDone = function(i, total, task) {
+        showTimerMessage('<p>Done</p>');
+        showTimerFlash();
+        showTimerCountdown();
+    };
+
+    var showTimerCountdown = function(timeRemaining) {
+        if(timeRemaining) {
+            $('#time-remaining').html('(' + timeRemaining + ')');
+        }
+        else {
+            $('#time-remaining').html('');
+        }
+    };
+
+    var startTimerCountdown = function(intervalSeconds) {
+        var timeRemaining = intervalSeconds;
+        var timerCountdownId;
+
+        showTimerCountdown(timeRemaining--);
+        timerCountdownId = window.setInterval(function() {
+            if(timeRemaining < 1) {
+                window.clearInterval(timerCountdownId);
+            }
+            else {
+                showTimerCountdown(timeRemaining--);
+            }
+        }, 1000);
+
+        return timerCountdownId;
+    };
+
+    var keepScreenOn = function() {
+        if(typeof native !== 'undefined' && native != null) native.KeepScreenOn();
+    };
+
+    var resetKeepScreenOn = function() {
+        if(typeof native !== 'undefined' && native != null) native.ResetKeepScreenOn();
+    };
+
+    var isNullOrWhitespace = function(str) {
+        return !str || !str.trim();
+    };
+
+    // TODO type (info, success, warning, danger)
+    // TODO buttons (cancel, ok, etc)
+    // TODO button actions/callbacks
+    var showModal = function(title, body) {
+        $('#mainModal .modal-title').text(title);
+        $('#mainModal .modal-body').text(body);
+        $('#mainModal').modal('show');
+    };
+
+    var intervalId;
+    var timerCountdownId;
+
+    // $('#start').click(function() {
+        console.info('Start clicked');
+
+        // Get configuration
+        const id = this.props.match.params.id;
+        var recordById = this.props.records.find(t => t.id === id);
+        if(!recordById) return;
+
+        var tasks = recordById.text.split("\n");
+        var intervalSeconds = recordById.intervalSeconds;
+        
+        // Check validity and clean up configuration
+        // tasks = _.filter(tasks, function(task) {
+        //     return !isNullOrWhitespace(task);
+        // });
+        console.info('tasks', tasks);
+        if(tasks.length < 1) {
+            // showModal('No exercises entered', 'Please enter one or more exercieses.');
+            return;
+        }
+
+        document.getElementById('alarm').play();
+
+        keepScreenOn();
+        showTimer();
+
+        // Clear previous runs
+        $('#timer-display').html('');
+
+        var i = 0;
+        showTimerTask(i, tasks.length, tasks[i]);
+        timerCountdownId = startTimerCountdown(intervalSeconds);
+
+        intervalId = window.setInterval(function() {
+            document.getElementById('alarm').play();
+
+            if(++i > tasks.length - 1) {
+                window.clearInterval(intervalId);
+                window.clearInterval(timerCountdownId);
+                resetKeepScreenOn();
+                showTimerDone();
+
+                window.setTimeout(function() {
+                    showConfiguration();
+                }, 1500);
+            }
+            else {
+                showTimerTask(i, tasks.length, tasks[i]);
+                timerCountdownId = startTimerCountdown(intervalSeconds);
+            }
+        }, intervalSeconds * 1000);
+    // });
+
+    $('#stop').click(function() {
+        console.log('Stop clicked');
+
+        showConfiguration();
+
+        window.clearInterval(intervalId);
+        window.clearInterval(timerCountdownId);
+        resetKeepScreenOn();
     });
-    if(myItems.length < 1) return;
+  }
 
-    setItems(myItems);
-    setItemIndex(0);
-    setName(myItems[0].name);
-    setSecondsRemaining(myItems[0].secondsRemaining);
+  render() {
+    return (
+      <React.Fragment>
+        <div id="timer">
+          <button id="stop" className="btn btn-warning">Stop</button>
+          <span id="timer-display"></span>
+          <span id="time-remaining"></span>
+        </div>
 
-    // if(intervalId < 1)
-    //   setIntervalId(startItem(myItems[0]));
-
-    var iid = setInterval(timer, 1000);
-    setIntervalId(iid);
-  }, [props.match.params.id]);
-
-  function timer() {
-    var newCount = secondsRemaining - 1;
-    if(newCount >= 0) {
-      console.info("newCount %o", newCount);
-      setSecondsRemaining(newCount);
-    }
-    else {
-      console.info("done count %o", intervalId);
-      clearInterval(intervalId);
-    }
-  };
-  
-  // function decrementSecondsRemaining() {
-  //   console.info(secondsRemaining - 1);
-  //   setSecondsRemaining(secondsRemaining - 1);
-  // }
-
-  // function startItem(item) {
-  //   console.info("startItem");
-
-  //   if(item == null) return;
-
-  //   // Start countdown
-  //   setCountDownId(window.setInterval(decrementSecondsRemaining, 1000));
-
-  //   return window.setInterval(function() {
-  //     // document.getElementById('alarm').play();
-
-  //     // Go to next item
-  //     window.clearInterval(countDownId);
-  //     console.info("goToNextItem")
-  //   }, item.secondsTotal * 1000);
-  // }
-
-  // useEffect(() => {
-  //   const id = props.match.params.id;
-  //   var recordById = props.records.find(t => t.id === id);
-  //   if(!recordById) return;
-
-  //   setRecord({...recordById});
-  //   setRecordItemIndex(0);
-
-  //   var items = recordById.text.split("\n").map(item => {
-  //     return {
-  //       name: item,
-  //       secondsRemaining: recordById.intervalSeconds,
-  //       secondsTotal: recordById.intervalSeconds,
-  //     };
-  //   });
-  //   setRecordItems(items);
-
-  //   setName(items[0].name);
-  //   setSecondsRemaining(items[0].secondsRemaining);
-
-  //   setIntervalId(startItem(items[0]));
-  // }, [props.match.params.id]);
-
-  // function startItem(item) {
-  //   return window.setInterval(function() {
-  //     document.getElementById('alarm').play();
-
-  //     if(item == null) return;
-
-  //     //     showTimerTask(i, tasks.length, tasks[i]);
-  //     timerCountdownId = startTimerCountdown(item);
-
-  //     // if(++i > tasks.length - 1) {
-  //       // window.clearInterval(intervalId);
-  //       // window.clearInterval(timerCountdownId);
-  //       // resetKeepScreenOn();
-  //       // showTimerDone();
-
-  //       // window.setTimeout(function() {
-  //       //     showConfiguration();
-  //       // }, 1500);
-  //     // }
-  //     // else {
-  //     //     showTimerTask(i, tasks.length, tasks[i]);
-  //     //     timerCountdownId = startTimerCountdown(intervalSeconds);
-  //     // }
-  //   }, item.secondsTotal * 1000);
-  // }
-
-  // function startTimerCountdown() {
-  //   var timerCountdownId = window.setInterval(function() {
-  //     if(secondsRemaining < 1) {
-  //       // Go to next item
-  //       window.clearInterval(timerCountdownId);
-  //     }
-  //     else {
-  //       setSecondsRemaining(secondsRemaining - 1000);
-  //     }
-  //   }, 1000);
-
-  //   return timerCountdownId;
-  // }
-
-  return (
-    <React.Fragment>
-      <WorkoutProgressSimple 
-        name={name}
-        secondsRemaining={secondsRemaining}
-        />
-
-      <audio id="alarm" controls="controls">
-        <source id="alarm-sound" src="assets/alarm.mp3" type="audio/mpeg" />
-      </audio>
-    </React.Fragment>
-  );
+        <audio id="alarm" controls="controls">
+          <source id="alarm-sound" src="assets/alarm.mp3" type="audio/mpeg" />
+        </audio>
+      </React.Fragment>
+    );
+  }
 }
 
 export default WorkoutProgress;

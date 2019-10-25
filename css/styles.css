@@ -17,3 +17,17 @@ audio {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.background-flash {
+  background-color: #48B7AB;
+}
+
+#timer {
+  display: none;
+}
+#timer-display {
+  font-size: 3.5em;
+}
+#time-remaining {
+  font-size: 2.5em;
+}

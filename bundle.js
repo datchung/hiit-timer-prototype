@@ -55535,26 +55535,9 @@ var _i18n2 = _interopRequireDefault(_i18n);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function WorkoutProgressPage(props) {
-  function onBackClick() {
-    props.history.goBack();
-  }
-
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
-    _react2.default.createElement(
-      'div',
-      { className: 'columns is-mobile' },
-      _react2.default.createElement(
-        'div',
-        { className: 'column' },
-        _react2.default.createElement(
-          'button',
-          { className: 'button', onClick: onBackClick },
-          _i18n2.default.t("back")
-        )
-      )
-    ),
     _react2.default.createElement(_WorkoutProgress2.default, props)
   );
 }
@@ -55990,17 +55973,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var WorkoutProgress = function (_React$Component) {
     _inherits(WorkoutProgress, _React$Component);
 
-    function WorkoutProgress() {
+    function WorkoutProgress(props) {
         _classCallCheck(this, WorkoutProgress);
 
-        return _possibleConstructorReturn(this, (WorkoutProgress.__proto__ || Object.getPrototypeOf(WorkoutProgress)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (WorkoutProgress.__proto__ || Object.getPrototypeOf(WorkoutProgress)).call(this, props));
+
+        _this.state = {
+            intervalId: 0,
+            timerCountdownId: 0
+        };
+
+        _this.onBackClick = _this.onBackClick.bind(_this);
+        return _this;
     }
 
     _createClass(WorkoutProgress, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var showTimer = function showTimer() {
-                // $('#configuration').css({ display: 'none' });
                 (0, _jquery2.default)('#timer').css({ display: 'block' });
             };
 
@@ -56052,31 +56042,13 @@ var WorkoutProgress = function (_React$Component) {
                 return timerCountdownId;
             };
 
-            var keepScreenOn = function keepScreenOn() {
-                if (typeof native !== 'undefined' && native != null) native.KeepScreenOn();
-            };
-
-            var resetKeepScreenOn = function resetKeepScreenOn() {
-                if (typeof native !== 'undefined' && native != null) native.ResetKeepScreenOn();
-            };
-
             var isNullOrWhitespace = function isNullOrWhitespace(str) {
                 return !str || !str.trim();
-            };
-
-            // TODO type (info, success, warning, danger)
-            // TODO buttons (cancel, ok, etc)
-            // TODO button actions/callbacks
-            var showModal = function showModal(title, body) {
-                (0, _jquery2.default)('#mainModal .modal-title').text(title);
-                (0, _jquery2.default)('#mainModal .modal-body').text(body);
-                (0, _jquery2.default)('#mainModal').modal('show');
             };
 
             var intervalId;
             var timerCountdownId;
 
-            // $('#start').click(function() {
             console.info('Start clicked');
 
             // Get configuration
@@ -56086,22 +56058,16 @@ var WorkoutProgress = function (_React$Component) {
             });
             if (!recordById) return;
 
-            var tasks = recordById.text.split("\n");
             var intervalSeconds = recordById.intervalSeconds;
-
-            // Check validity and clean up configuration
-            // tasks = _.filter(tasks, function(task) {
-            //     return !isNullOrWhitespace(task);
-            // });
+            var tasks = recordById.text.split("\n").filter(function (t) {
+                return !isNullOrWhitespace(t);
+            });
             console.info('tasks', tasks);
-            if (tasks.length < 1) {
-                // showModal('No exercises entered', 'Please enter one or more exercieses.');
-                return;
-            }
+            if (tasks.length < 1) return;
 
             document.getElementById('alarm').play();
 
-            keepScreenOn();
+            this.keepScreenOn();
             showTimer();
 
             // Clear previous runs
@@ -56117,28 +56083,39 @@ var WorkoutProgress = function (_React$Component) {
                 if (++i > tasks.length - 1) {
                     window.clearInterval(intervalId);
                     window.clearInterval(timerCountdownId);
-                    resetKeepScreenOn();
+                    this.resetKeepScreenOn();
                     showTimerDone();
-
-                    window.setTimeout(function () {
-                        showConfiguration();
-                    }, 1500);
                 } else {
                     showTimerTask(i, tasks.length, tasks[i]);
                     timerCountdownId = startTimerCountdown(intervalSeconds);
                 }
             }, intervalSeconds * 1000);
-            // });
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.onBackClick();
+        }
+    }, {
+        key: 'onBackClick',
+        value: function onBackClick() {
+            console.log('Stop clicked');
 
-            (0, _jquery2.default)('#stop').click(function () {
-                console.log('Stop clicked');
+            window.clearInterval(intervalId);
+            window.clearInterval(timerCountdownId);
+            this.resetKeepScreenOn();
 
-                showConfiguration();
-
-                window.clearInterval(intervalId);
-                window.clearInterval(timerCountdownId);
-                resetKeepScreenOn();
-            });
+            props.history.goBack();
+        }
+    }, {
+        key: 'keepScreenOn',
+        value: function keepScreenOn() {
+            if (typeof native !== 'undefined' && native != null) native.KeepScreenOn();
+        }
+    }, {
+        key: 'resetKeepScreenOn',
+        value: function resetKeepScreenOn() {
+            if (typeof native !== 'undefined' && native != null) native.ResetKeepScreenOn();
         }
     }, {
         key: 'render',
@@ -56146,6 +56123,19 @@ var WorkoutProgress = function (_React$Component) {
             return _react2.default.createElement(
                 _react2.default.Fragment,
                 null,
+                _react2.default.createElement(
+                    'div',
+                    { className: 'columns is-mobile' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'column' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'button', onClick: this.onBackClick },
+                            _i18n2.default.t("back")
+                        )
+                    )
+                ),
                 _react2.default.createElement(
                     'div',
                     { id: 'timer' },

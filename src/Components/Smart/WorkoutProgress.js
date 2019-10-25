@@ -3,9 +3,19 @@ import $ from 'jquery';
 import T from '../../Localization/i18n';
 
 class WorkoutProgress extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      intervalId: 0,
+      timerCountdownId: 0,
+    };
+
+    this.onBackClick = this.onBackClick.bind(this);
+  }
+
   componentDidMount() {
     var showTimer = function() {
-        // $('#configuration').css({ display: 'none' });
         $('#timer').css({ display: 'block' });
     };
 
@@ -61,97 +71,86 @@ class WorkoutProgress extends React.Component {
         return timerCountdownId;
     };
 
-    var keepScreenOn = function() {
-        if(typeof native !== 'undefined' && native != null) native.KeepScreenOn();
-    };
-
-    var resetKeepScreenOn = function() {
-        if(typeof native !== 'undefined' && native != null) native.ResetKeepScreenOn();
-    };
-
     var isNullOrWhitespace = function(str) {
         return !str || !str.trim();
-    };
-
-    // TODO type (info, success, warning, danger)
-    // TODO buttons (cancel, ok, etc)
-    // TODO button actions/callbacks
-    var showModal = function(title, body) {
-        $('#mainModal .modal-title').text(title);
-        $('#mainModal .modal-body').text(body);
-        $('#mainModal').modal('show');
     };
 
     var intervalId;
     var timerCountdownId;
 
-    // $('#start').click(function() {
-        console.info('Start clicked');
+    console.info('Start clicked');
 
-        // Get configuration
-        const id = this.props.match.params.id;
-        var recordById = this.props.records.find(t => t.id === id);
-        if(!recordById) return;
+    // Get configuration
+    const id = this.props.match.params.id;
+    var recordById = this.props.records.find(t => t.id === id);
+    if(!recordById) return;
 
-        var tasks = recordById.text.split("\n");
-        var intervalSeconds = recordById.intervalSeconds;
-        
-        // Check validity and clean up configuration
-        // tasks = _.filter(tasks, function(task) {
-        //     return !isNullOrWhitespace(task);
-        // });
-        console.info('tasks', tasks);
-        if(tasks.length < 1) {
-            // showModal('No exercises entered', 'Please enter one or more exercieses.');
-            return;
-        }
+    var intervalSeconds = recordById.intervalSeconds;
+    var tasks = recordById.text.split("\n").filter(t => !isNullOrWhitespace(t));
+    console.info('tasks', tasks);
+    if(tasks.length < 1) return;
 
+    document.getElementById('alarm').play();
+
+    this.keepScreenOn();
+    showTimer();
+
+    // Clear previous runs
+    $('#timer-display').html('');
+
+    var i = 0;
+    showTimerTask(i, tasks.length, tasks[i]);
+    timerCountdownId = startTimerCountdown(intervalSeconds);
+
+    intervalId = window.setInterval(function() {
         document.getElementById('alarm').play();
 
-        keepScreenOn();
-        showTimer();
+        if(++i > tasks.length - 1) {
+            window.clearInterval(intervalId);
+            window.clearInterval(timerCountdownId);
+            this.resetKeepScreenOn();
+            showTimerDone();
+        }
+        else {
+            showTimerTask(i, tasks.length, tasks[i]);
+            timerCountdownId = startTimerCountdown(intervalSeconds);
+        }
+    }, intervalSeconds * 1000);
+  }
 
-        // Clear previous runs
-        $('#timer-display').html('');
+  componentWillUnmount() {
+    this.onBackClick();
+  }
 
-        var i = 0;
-        showTimerTask(i, tasks.length, tasks[i]);
-        timerCountdownId = startTimerCountdown(intervalSeconds);
+  onBackClick() {
+    console.log('Stop clicked');
 
-        intervalId = window.setInterval(function() {
-            document.getElementById('alarm').play();
+    window.clearInterval(intervalId);
+    window.clearInterval(timerCountdownId);
+    this.resetKeepScreenOn();
 
-            if(++i > tasks.length - 1) {
-                window.clearInterval(intervalId);
-                window.clearInterval(timerCountdownId);
-                resetKeepScreenOn();
-                showTimerDone();
+    props.history.goBack();
+  }
 
-                window.setTimeout(function() {
-                    showConfiguration();
-                }, 1500);
-            }
-            else {
-                showTimerTask(i, tasks.length, tasks[i]);
-                timerCountdownId = startTimerCountdown(intervalSeconds);
-            }
-        }, intervalSeconds * 1000);
-    // });
+  keepScreenOn() {
+    if(typeof native !== 'undefined' && native != null) native.KeepScreenOn();
+  }
 
-    $('#stop').click(function() {
-        console.log('Stop clicked');
-
-        showConfiguration();
-
-        window.clearInterval(intervalId);
-        window.clearInterval(timerCountdownId);
-        resetKeepScreenOn();
-    });
+  resetKeepScreenOn() {
+    if(typeof native !== 'undefined' && native != null) native.ResetKeepScreenOn();
   }
 
   render() {
     return (
       <React.Fragment>
+        <div className="columns is-mobile">
+          <div className="column">
+            <button className="button" onClick={this.onBackClick}>
+              {T.t("back")}
+            </button>
+          </div>
+        </div>
+
         <div id="timer">
           <button id="stop" className="btn btn-warning">Stop</button>
           <span id="timer-display"></span>

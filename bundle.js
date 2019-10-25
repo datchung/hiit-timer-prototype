@@ -56104,7 +56104,7 @@ var WorkoutProgress = function (_React$Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            this.onBackClick();
+            //this.onBackClick();
         }
     }, {
         key: 'onBackClick',

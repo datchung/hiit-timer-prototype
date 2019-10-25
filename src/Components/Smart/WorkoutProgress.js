@@ -130,7 +130,7 @@ class WorkoutProgress extends React.Component {
   }
 
   componentWillUnmount() {
-    this.onBackClick();
+    //this.onBackClick();
   }
 
   onBackClick() {

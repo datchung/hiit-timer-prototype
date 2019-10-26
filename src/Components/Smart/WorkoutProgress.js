@@ -15,16 +15,16 @@ class WorkoutProgress extends React.Component {
   }
 
   componentDidMount() {
-    var showTimer = function() {
-        $('#timer').css({ display: 'block' });
-    };
-
     var showTimerMessage = function(message) {
+      if(isNullOrWhitespace($('#timer-display').text()))
+        $('#timer-display').append(message);
+      else
         $('#timer-display').append('<br/>' + message);
-        $('html, body').animate({
-            scrollTop: $(document).height()-$(window).height()},
-            500
-        );
+
+      $('html, body').animate({
+        scrollTop: $(document).height()-$(window).height()},
+        500
+      );
     };
 
     var showTimerFlash = function() {
@@ -75,9 +75,6 @@ class WorkoutProgress extends React.Component {
         return !str || !str.trim();
     };
 
-    //var intervalId;
-    //var timerCountdownId;
-
     console.info('Start clicked');
 
     // Get configuration
@@ -93,7 +90,6 @@ class WorkoutProgress extends React.Component {
     document.getElementById('alarm').play();
 
     this.keepScreenOn();
-    showTimer();
 
     // Clear previous runs
     $('#timer-display').html('');
@@ -126,11 +122,7 @@ class WorkoutProgress extends React.Component {
             });
         }
       }, intervalSeconds * 1000)
-  });
-  }
-
-  componentWillUnmount() {
-    //this.onBackClick();
+    });
   }
 
   onBackClick() {
@@ -162,10 +154,11 @@ class WorkoutProgress extends React.Component {
           </div>
         </div>
 
-        <div id="timer">
-          <button id="stop" className="btn btn-warning">Stop</button>
-          <span id="timer-display"></span>
-          <span id="time-remaining"></span>
+        <div className="columns is-mobile">
+          <div className="column" id="timer">
+            <span className="is-size-1" id="timer-display"></span>
+            <span className="is-size-3" id="time-remaining"></span>
+          </div>
         </div>
 
         <audio id="alarm" controls="controls">

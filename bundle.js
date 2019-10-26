@@ -55992,12 +55992,9 @@ var WorkoutProgress = function (_React$Component) {
     _createClass(WorkoutProgress, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var showTimer = function showTimer() {
-                (0, _jquery2.default)('#timer').css({ display: 'block' });
-            };
-
             var showTimerMessage = function showTimerMessage(message) {
-                (0, _jquery2.default)('#timer-display').append('<br/>' + message);
+                if (isNullOrWhitespace((0, _jquery2.default)('#timer-display').text())) (0, _jquery2.default)('#timer-display').append(message);else (0, _jquery2.default)('#timer-display').append('<br/>' + message);
+
                 (0, _jquery2.default)('html, body').animate({
                     scrollTop: (0, _jquery2.default)(document).height() - (0, _jquery2.default)(window).height() }, 500);
             };
@@ -56048,9 +56045,6 @@ var WorkoutProgress = function (_React$Component) {
                 return !str || !str.trim();
             };
 
-            //var intervalId;
-            //var timerCountdownId;
-
             console.info('Start clicked');
 
             // Get configuration
@@ -56070,7 +56064,6 @@ var WorkoutProgress = function (_React$Component) {
             document.getElementById('alarm').play();
 
             this.keepScreenOn();
-            showTimer();
 
             // Clear previous runs
             (0, _jquery2.default)('#timer-display').html('');
@@ -56100,11 +56093,6 @@ var WorkoutProgress = function (_React$Component) {
                     }
                 }, intervalSeconds * 1000)
             }));
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            //this.onBackClick();
         }
     }, {
         key: 'onBackClick',
@@ -56148,14 +56136,13 @@ var WorkoutProgress = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { id: 'timer' },
+                    { className: 'columns is-mobile' },
                     _react2.default.createElement(
-                        'button',
-                        { id: 'stop', className: 'btn btn-warning' },
-                        'Stop'
-                    ),
-                    _react2.default.createElement('span', { id: 'timer-display' }),
-                    _react2.default.createElement('span', { id: 'time-remaining' })
+                        'div',
+                        { className: 'column', id: 'timer' },
+                        _react2.default.createElement('span', { className: 'is-size-1', id: 'timer-display' }),
+                        _react2.default.createElement('span', { className: 'is-size-3', id: 'time-remaining' })
+                    )
                 ),
                 _react2.default.createElement(
                     'audio',

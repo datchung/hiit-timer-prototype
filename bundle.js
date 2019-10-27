@@ -56021,7 +56021,7 @@ var WorkoutProgress = function (_React$Component) {
             };
 
             var showTimerDone = function showTimerDone(i, total, task) {
-                showTimerMessage('<p>Done</p>');
+                showTimerMessage('<p>' + _i18n2.default.t("done") + '</p>');
                 showTimerFlash();
                 showTimerCountdown();
             };
@@ -56054,8 +56054,6 @@ var WorkoutProgress = function (_React$Component) {
                 return !str || !str.trim();
             };
 
-            console.info('Start clicked');
-
             // Get configuration
             var id = this.props.match.params.id;
             var recordById = this.props.records.find(function (t) {
@@ -56067,7 +56065,6 @@ var WorkoutProgress = function (_React$Component) {
             var tasks = recordById.text.split("\n").filter(function (t) {
                 return !isNullOrWhitespace(t);
             });
-            console.info('tasks', tasks);
             if (tasks.length < 1) return;
 
             document.getElementById('alarm').play();
@@ -56106,13 +56103,10 @@ var WorkoutProgress = function (_React$Component) {
     }, {
         key: 'onBackClick',
         value: function onBackClick() {
-            console.log('Stop clicked');
-
             window.clearInterval(this.state.intervalId);
             window.clearInterval(this.state.timerCountdownId);
             this.resetKeepScreenOn();
 
-            // this.props.history.goBack();
             this.props.onStopPlaying();
         }
     }, {
@@ -56131,7 +56125,7 @@ var WorkoutProgress = function (_React$Component) {
             return _react2.default.createElement(
                 _react2.default.Fragment,
                 null,
-                _react2.default.createElement(_BackSection2.default, { onBackClick: onBackClick }),
+                _react2.default.createElement(_BackSection2.default, { onBackClick: this.onBackClick }),
                 _react2.default.createElement(
                     'div',
                     { className: 'columns is-mobile' },
@@ -56745,7 +56739,8 @@ exports.default = {
   "records": "workouts",
   "recordList": "Workout History",
   "exercises": "Exercises (one per line)",
-  "interval": "Interval (seconds)"
+  "interval": "Interval (seconds)",
+  "done": "Done"
 };
 
 },{}],119:[function(require,module,exports){

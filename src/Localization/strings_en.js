@@ -19,4 +19,5 @@ export default {
   "recordList": "Workout History",
   "exercises": "Exercises (one per line)",
   "interval": "Interval (seconds)",
+  "done": "Done",
 };

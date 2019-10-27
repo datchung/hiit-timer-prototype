@@ -41,7 +41,7 @@ class WorkoutProgress extends React.Component {
     };
 
     var showTimerDone = function(i, total, task) {
-        showTimerMessage('<p>Done</p>');
+        showTimerMessage(`<p>${T.t("done")}</p>`);
         showTimerFlash();
         showTimerCountdown();
     };
@@ -76,8 +76,6 @@ class WorkoutProgress extends React.Component {
         return !str || !str.trim();
     };
 
-    console.info('Start clicked');
-
     // Get configuration
     const id = this.props.match.params.id;
     var recordById = this.props.records.find(t => t.id === id);
@@ -85,7 +83,6 @@ class WorkoutProgress extends React.Component {
 
     var intervalSeconds = recordById.intervalSeconds;
     var tasks = recordById.text.split("\n").filter(t => !isNullOrWhitespace(t));
-    console.info('tasks', tasks);
     if(tasks.length < 1) return;
 
     document.getElementById('alarm').play();
@@ -127,13 +124,10 @@ class WorkoutProgress extends React.Component {
   }
 
   onBackClick() {
-    console.log('Stop clicked');
-
     window.clearInterval(this.state.intervalId);
     window.clearInterval(this.state.timerCountdownId);
     this.resetKeepScreenOn();
 
-    // this.props.history.goBack();
     this.props.onStopPlaying();
   }
 
@@ -148,7 +142,7 @@ class WorkoutProgress extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <BackSection onBackClick={onBackClick} />
+        <BackSection onBackClick={this.onBackClick} />
 
         <div className="columns is-mobile">
           <div className="column" id="timer">

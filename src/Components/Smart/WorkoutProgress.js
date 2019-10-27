@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import BackSection from '../Simple/BackSection';
 import $ from 'jquery';
 import T from '../../Localization/i18n';
@@ -29,9 +29,9 @@ class WorkoutProgress extends React.Component {
     };
 
     var showTimerFlash = function() {
-        $('body').addClass('background-flash');
+        $('#timer').addClass('background-flash');
         window.setTimeout(function() {
-            $('body').removeClass('background-flash');
+            $('#timer').removeClass('background-flash');
         }, 1000);
     };
 

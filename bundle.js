@@ -56009,9 +56009,9 @@ var WorkoutProgress = function (_React$Component) {
             };
 
             var showTimerFlash = function showTimerFlash() {
-                (0, _jquery2.default)('body').addClass('background-flash');
+                (0, _jquery2.default)('#timer').addClass('background-flash');
                 window.setTimeout(function () {
-                    (0, _jquery2.default)('body').removeClass('background-flash');
+                    (0, _jquery2.default)('#timer').removeClass('background-flash');
                 }, 1000);
             };
 

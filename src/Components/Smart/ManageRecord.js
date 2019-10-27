@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ManageRecordSimple from '../Simple/ManageRecordSimple';
 import T from '../../Localization/i18n';
-import WorkoutProgress from './WorkoutProgress';
 
 function ManageRecord(props) {
   const [errors, setErrors] = useState({});
@@ -12,7 +11,6 @@ function ManageRecord(props) {
     dateCreated: 0,
     dateModified: 0,
   });
-  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -45,21 +43,9 @@ function ManageRecord(props) {
     props.onAddRecord(record.text, record.intervalSeconds);
 
     // Show WorkoutProgress component
-    setIsPlaying(true);
+    props.setIsPlaying(true);
   }
 
-  function onStopPlaying() {
-    setIsPlaying(false);
-  }
-
-  if(isPlaying)
-    return (
-      <WorkoutProgress
-        {...props}
-        onStopPlaying={onStopPlaying}
-        />
-    );
-  
   return (
     <ManageRecordSimple
       errors={errors}

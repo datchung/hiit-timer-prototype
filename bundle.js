@@ -55307,6 +55307,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _react = require('react');
@@ -55318,6 +55320,10 @@ var _reactRouterDom = require('react-router-dom');
 var _ManageRecord = require('../Smart/ManageRecord');
 
 var _ManageRecord2 = _interopRequireDefault(_ManageRecord);
+
+var _WorkoutProgress = require('../Smart/WorkoutProgress');
+
+var _WorkoutProgress2 = _interopRequireDefault(_WorkoutProgress);
 
 var _i18n = require('../../Localization/i18n');
 
@@ -55331,6 +55337,11 @@ function ManageRecordPage(props) {
       subTitle = _useState2[0],
       setSubTitle = _useState2[1];
 
+  var _useState3 = (0, _react.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isPlaying = _useState4[0],
+      setIsPlaying = _useState4[1];
+
   (0, _react.useEffect)(function () {
     var id = props.match.params.id;
     var recordById = props.records.find(function (t) {
@@ -55342,6 +55353,14 @@ function ManageRecordPage(props) {
   function onBackClick() {
     props.history.goBack();
   }
+
+  function onStopPlaying() {
+    setIsPlaying(false);
+  }
+
+  if (isPlaying) return _react2.default.createElement(_WorkoutProgress2.default, _extends({}, props, {
+    onStopPlaying: onStopPlaying
+  }));
 
   return _react2.default.createElement(
     _react2.default.Fragment,
@@ -55372,13 +55391,15 @@ function ManageRecordPage(props) {
         )
       )
     ),
-    _react2.default.createElement(_ManageRecord2.default, props)
+    _react2.default.createElement(_ManageRecord2.default, _extends({
+      setIsPlaying: setIsPlaying
+    }, props))
   );
 }
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageRecordPage);
 
-},{"../../Localization/i18n":115,"../Smart/ManageRecord":100,"react":71,"react-router-dom":65}],94:[function(require,module,exports){
+},{"../../Localization/i18n":115,"../Smart/ManageRecord":100,"../Smart/WorkoutProgress":102,"react":71,"react-router-dom":65}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55781,10 +55802,6 @@ var _i18n = require('../../Localization/i18n');
 
 var _i18n2 = _interopRequireDefault(_i18n);
 
-var _WorkoutProgress = require('./WorkoutProgress');
-
-var _WorkoutProgress2 = _interopRequireDefault(_WorkoutProgress);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -55805,11 +55822,6 @@ function ManageRecord(props) {
       _useState4 = _slicedToArray(_useState3, 2),
       record = _useState4[0],
       setRecord = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isPlaying = _useState6[0],
-      setIsPlaying = _useState6[1];
 
   (0, _react.useEffect)(function () {
     var id = props.match.params.id;
@@ -55843,16 +55855,8 @@ function ManageRecord(props) {
     props.onAddRecord(record.text, record.intervalSeconds);
 
     // Show WorkoutProgress component
-    setIsPlaying(true);
+    props.setIsPlaying(true);
   }
-
-  function onStopPlaying() {
-    setIsPlaying(false);
-  }
-
-  if (isPlaying) return _react2.default.createElement(_WorkoutProgress2.default, _extends({}, props, {
-    onStopPlaying: onStopPlaying
-  }));
 
   return _react2.default.createElement(_ManageRecordSimple2.default, {
     errors: errors,
@@ -55864,7 +55868,7 @@ function ManageRecord(props) {
 
 exports.default = ManageRecord;
 
-},{"../../Localization/i18n":115,"../Simple/ManageRecordSimple":97,"./WorkoutProgress":102,"react":71}],101:[function(require,module,exports){
+},{"../../Localization/i18n":115,"../Simple/ManageRecordSimple":97,"react":71}],101:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

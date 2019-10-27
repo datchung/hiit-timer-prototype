@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {withRouter} from 'react-router-dom';
 import ManageRecord from '../Smart/ManageRecord';
+import WorkoutProgress from '../Smart/WorkoutProgress';
 import T from '../../Localization/i18n';
 
 function ManageRecordPage(props) {
   const [subTitle, setSubTitle] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -15,6 +17,18 @@ function ManageRecordPage(props) {
   function onBackClick() {
     props.history.goBack();
   }
+
+  function onStopPlaying() {
+    setIsPlaying(false);
+  }
+
+  if(isPlaying)
+    return (
+      <WorkoutProgress
+        {...props}
+        onStopPlaying={onStopPlaying}
+        />
+    );
 
   return (
     <React.Fragment>
@@ -31,7 +45,10 @@ function ManageRecordPage(props) {
         </div>
       </div>
 
-      <ManageRecord {...props} />
+      <ManageRecord
+        setIsPlaying={setIsPlaying}
+        {...props}
+        />
     </React.Fragment>
   );
 }

@@ -55961,6 +55961,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _BackSection = require('../Simple/BackSection');
+
+var _BackSection2 = _interopRequireDefault(_BackSection);
+
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
@@ -56127,19 +56131,7 @@ var WorkoutProgress = function (_React$Component) {
             return _react2.default.createElement(
                 _react2.default.Fragment,
                 null,
-                _react2.default.createElement(
-                    'div',
-                    { className: 'columns is-mobile' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'column' },
-                        _react2.default.createElement(
-                            'button',
-                            { className: 'button', onClick: this.onBackClick },
-                            _i18n2.default.t("back")
-                        )
-                    )
-                ),
+                _react2.default.createElement(_BackSection2.default, { onBackClick: onBackClick }),
                 _react2.default.createElement(
                     'div',
                     { className: 'columns is-mobile' },
@@ -56164,7 +56156,7 @@ var WorkoutProgress = function (_React$Component) {
 
 exports.default = WorkoutProgress;
 
-},{"../../Localization/i18n":116,"jquery":46,"react":71}],104:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Simple/BackSection":96,"jquery":46,"react":71}],104:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

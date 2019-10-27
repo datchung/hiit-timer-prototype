@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import BackSection from '../Simple/BackSection';
 import $ from 'jquery';
 import T from '../../Localization/i18n';
 
@@ -147,13 +148,7 @@ class WorkoutProgress extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="columns is-mobile">
-          <div className="column">
-            <button className="button" onClick={this.onBackClick}>
-              {T.t("back")}
-            </button>
-          </div>
-        </div>
+        <BackSection onBackClick={onBackClick} />
 
         <div className="columns is-mobile">
           <div className="column" id="timer">

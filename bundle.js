@@ -55258,7 +55258,7 @@ function AppPage(props) {
 
 exports.default = AppPage;
 
-},{"../../Localization/i18n":115,"./HomePage":92,"./ManageRecordPage":93,"./NotFoundPage":94,"./RecordListPage":95,"react":71,"react-router-dom":65}],92:[function(require,module,exports){
+},{"../../Localization/i18n":116,"./HomePage":92,"./ManageRecordPage":93,"./NotFoundPage":94,"./RecordListPage":95,"react":71,"react-router-dom":65}],92:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55300,7 +55300,7 @@ function HomePage(props) {
 
 exports.default = HomePage;
 
-},{"../../Localization/i18n":115,"react":71,"react-router-dom":65}],93:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":71,"react-router-dom":65}],93:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55324,6 +55324,10 @@ var _ManageRecord2 = _interopRequireDefault(_ManageRecord);
 var _WorkoutProgress = require('../Smart/WorkoutProgress');
 
 var _WorkoutProgress2 = _interopRequireDefault(_WorkoutProgress);
+
+var _BackSection = require('../Simple/BackSection');
+
+var _BackSection2 = _interopRequireDefault(_BackSection);
 
 var _i18n = require('../../Localization/i18n');
 
@@ -55365,19 +55369,7 @@ function ManageRecordPage(props) {
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
-    _react2.default.createElement(
-      'div',
-      { className: 'columns is-mobile' },
-      _react2.default.createElement(
-        'div',
-        { className: 'column' },
-        _react2.default.createElement(
-          'button',
-          { className: 'button', onClick: onBackClick },
-          _i18n2.default.t("back")
-        )
-      )
-    ),
+    _react2.default.createElement(_BackSection2.default, { onBackClick: onBackClick }),
     _react2.default.createElement(
       'div',
       { className: 'columns is-mobile' },
@@ -55399,7 +55391,7 @@ function ManageRecordPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(ManageRecordPage);
 
-},{"../../Localization/i18n":115,"../Smart/ManageRecord":100,"../Smart/WorkoutProgress":102,"react":71,"react-router-dom":65}],94:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Simple/BackSection":96,"../Smart/ManageRecord":101,"../Smart/WorkoutProgress":103,"react":71,"react-router-dom":65}],94:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55430,7 +55422,7 @@ function NotFoundPage() {
 
 exports.default = NotFoundPage;
 
-},{"../../Localization/i18n":115,"react":71}],95:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":71}],95:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55456,6 +55448,10 @@ var _RecordList2 = _interopRequireDefault(_RecordList);
 var _FilterSort = require('../Smart/FilterSort');
 
 var _FilterSort2 = _interopRequireDefault(_FilterSort);
+
+var _BackSection = require('../Simple/BackSection');
+
+var _BackSection2 = _interopRequireDefault(_BackSection);
 
 var _i18n = require('../../Localization/i18n');
 
@@ -55486,19 +55482,7 @@ function RecordListPage(props) {
   return _react2.default.createElement(
     _react2.default.Fragment,
     null,
-    _react2.default.createElement(
-      'div',
-      { className: 'columns is-mobile' },
-      _react2.default.createElement(
-        'div',
-        { className: 'column' },
-        _react2.default.createElement(
-          'button',
-          { className: 'button', onClick: onBackClick },
-          _i18n2.default.t("back")
-        )
-      )
-    ),
+    _react2.default.createElement(_BackSection2.default, { onBackClick: onBackClick }),
     _react2.default.createElement(
       'div',
       { className: 'columns is-mobile' },
@@ -55525,7 +55509,46 @@ function RecordListPage(props) {
 
 exports.default = (0, _reactRouterDom.withRouter)(RecordListPage);
 
-},{"../../Localization/i18n":115,"../Smart/FilterSort":99,"../Smart/RecordList":101,"react":71,"react-router-dom":65}],96:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Simple/BackSection":96,"../Smart/FilterSort":100,"../Smart/RecordList":102,"react":71,"react-router-dom":65}],96:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _i18n = require('../../Localization/i18n');
+
+var _i18n2 = _interopRequireDefault(_i18n);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function BackSection(props) {
+  function onBackClick() {
+    props.onBackClick();
+  }
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'columns is-mobile' },
+    _react2.default.createElement(
+      'div',
+      { className: 'column' },
+      _react2.default.createElement(
+        'button',
+        { className: 'button', onClick: onBackClick },
+        _i18n2.default.t("back")
+      )
+    )
+  );
+}
+
+exports.default = BackSection;
+
+},{"../../Localization/i18n":116,"react":71}],97:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55605,7 +55628,7 @@ function FilterSortSimple(props) {
 
 exports.default = FilterSortSimple;
 
-},{"../../Localization/i18n":115,"react":71}],97:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":71}],98:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55695,7 +55718,7 @@ function ManageRecordSimple(props) {
 
 exports.default = ManageRecordSimple;
 
-},{"../../Localization/i18n":115,"react":71}],98:[function(require,module,exports){
+},{"../../Localization/i18n":116,"react":71}],99:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55741,7 +55764,7 @@ function RecordListSimple(props) {
 
 exports.default = RecordListSimple;
 
-},{"../smart/Record":104,"react":71}],99:[function(require,module,exports){
+},{"../smart/Record":105,"react":71}],100:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55779,7 +55802,7 @@ function FilterSort(props) {
 
 exports.default = FilterSort;
 
-},{"../Simple/FilterSortSimple":96,"react":71}],100:[function(require,module,exports){
+},{"../Simple/FilterSortSimple":97,"react":71}],101:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55868,7 +55891,7 @@ function ManageRecord(props) {
 
 exports.default = ManageRecord;
 
-},{"../../Localization/i18n":115,"../Simple/ManageRecordSimple":97,"react":71}],101:[function(require,module,exports){
+},{"../../Localization/i18n":116,"../Simple/ManageRecordSimple":98,"react":71}],102:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -55923,7 +55946,7 @@ function RecordList(props) {
 
 exports.default = RecordList;
 
-},{"../Simple/RecordListSimple":98,"react":71}],102:[function(require,module,exports){
+},{"../Simple/RecordListSimple":99,"react":71}],103:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56141,7 +56164,7 @@ var WorkoutProgress = function (_React$Component) {
 
 exports.default = WorkoutProgress;
 
-},{"../../Localization/i18n":115,"jquery":46,"react":71}],103:[function(require,module,exports){
+},{"../../Localization/i18n":116,"jquery":46,"react":71}],104:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56207,7 +56230,7 @@ function RecordSimple(props) {
 
 exports.default = RecordSimple;
 
-},{"../../Modules/DateTimeModule":122,"../../localization/i18n":124,"react":71,"react-router-dom":65}],104:[function(require,module,exports){
+},{"../../Modules/DateTimeModule":123,"../../localization/i18n":125,"react":71,"react-router-dom":65}],105:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56234,7 +56257,7 @@ function Record(props) {
 
 exports.default = Record;
 
-},{"../simple/RecordSimple":103,"react":71}],105:[function(require,module,exports){
+},{"../simple/RecordSimple":104,"react":71}],106:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56245,7 +56268,7 @@ var _flux = require('flux');
 
 exports.default = new _flux.Dispatcher();
 
-},{"flux":28}],106:[function(require,module,exports){
+},{"flux":28}],107:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56258,7 +56281,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],107:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56292,7 +56315,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"../Dispatcher":105,"./FilterSortActionTypes":106}],108:[function(require,module,exports){
+},{"../Dispatcher":106,"./FilterSortActionTypes":107}],109:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56330,7 +56353,7 @@ var FilterSortPersistence = function () {
 
 exports.default = FilterSortPersistence;
 
-},{}],109:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56416,7 +56439,7 @@ var FilterSortStore = function (_ReduceStore) {
 
 exports.default = new FilterSortStore();
 
-},{"../Dispatcher":105,"./FilterSortActionTypes":106,"./FilterSortPersistence":108,"flux/utils":37}],110:[function(require,module,exports){
+},{"../Dispatcher":106,"./FilterSortActionTypes":107,"./FilterSortPersistence":109,"flux/utils":37}],111:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56439,7 +56462,7 @@ var Record = _immutable2.default.Record({
 
 exports.default = Record;
 
-},{"immutable":45}],111:[function(require,module,exports){
+},{"immutable":45}],112:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56452,7 +56475,7 @@ var ActionTypes = {
 
 exports.default = ActionTypes;
 
-},{}],112:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56487,7 +56510,7 @@ var Actions = {
 
 exports.default = Actions;
 
-},{"../Dispatcher":105,"./RecordActionTypes":111}],113:[function(require,module,exports){
+},{"../Dispatcher":106,"./RecordActionTypes":112}],114:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56522,7 +56545,7 @@ var RecordPersistence = function () {
 
 exports.default = RecordPersistence;
 
-},{}],114:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56625,7 +56648,7 @@ var RecordStore = function (_ReduceStore) {
 
 exports.default = new RecordStore();
 
-},{"../../Modules/DateTimeModule":122,"../Dispatcher":105,"./Record":110,"./RecordActionTypes":111,"./RecordPersistence":113,"flux/utils":37,"uuid":83}],115:[function(require,module,exports){
+},{"../../Modules/DateTimeModule":123,"../Dispatcher":106,"./Record":111,"./RecordActionTypes":112,"./RecordPersistence":114,"flux/utils":37,"uuid":83}],116:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56696,7 +56719,7 @@ var i18nOptions = {
 exports.i18nOptions = i18nOptions;
 exports.default = _i18next2.default;
 
-},{"./strings_cn":116,"./strings_en":117,"./strings_es":118,"./strings_fr":119,"./strings_pt":120,"./strings_ru":121,"i18next":44,"i18next-browser-languagedetector":43}],116:[function(require,module,exports){
+},{"./strings_cn":117,"./strings_en":118,"./strings_es":119,"./strings_fr":120,"./strings_pt":121,"./strings_ru":122,"i18next":44,"i18next-browser-languagedetector":43}],117:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56704,7 +56727,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = {};
 
-},{}],117:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56732,14 +56755,6 @@ exports.default = {
   "exercises": "Exercises (one per line)",
   "interval": "Interval (seconds)"
 };
-
-},{}],118:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {};
 
 },{}],119:[function(require,module,exports){
 "use strict";
@@ -56771,6 +56786,14 @@ exports.default = {};
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = {};
+
+},{}],123:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 var DateTimeModule = function () {
   function getNowMs() {
     return +new Date();
@@ -56789,7 +56812,7 @@ var DateTimeModule = function () {
 
 exports.default = DateTimeModule;
 
-},{}],123:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -56840,11 +56863,9 @@ function getState() {
 
 exports.default = _utils.Container.createFunctional(_AppPage2.default, getStores, getState);
 
-},{"../Components/Pages/AppPage":91,"../Data/FilterSort/FilterSortActions":107,"../Data/FilterSort/FilterSortStore":109,"../Data/Record/RecordActions":112,"../Data/Record/RecordStore":114,"flux/utils":37}],124:[function(require,module,exports){
-arguments[4][115][0].apply(exports,arguments)
-},{"./strings_cn":125,"./strings_en":126,"./strings_es":127,"./strings_fr":128,"./strings_pt":129,"./strings_ru":130,"dup":115,"i18next":44,"i18next-browser-languagedetector":43}],125:[function(require,module,exports){
+},{"../Components/Pages/AppPage":91,"../Data/FilterSort/FilterSortActions":108,"../Data/FilterSort/FilterSortStore":110,"../Data/Record/RecordActions":113,"../Data/Record/RecordStore":115,"flux/utils":37}],125:[function(require,module,exports){
 arguments[4][116][0].apply(exports,arguments)
-},{"dup":116}],126:[function(require,module,exports){
+},{"./strings_cn":126,"./strings_en":127,"./strings_es":128,"./strings_fr":129,"./strings_pt":130,"./strings_ru":131,"dup":116,"i18next":44,"i18next-browser-languagedetector":43}],126:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
 },{"dup":117}],127:[function(require,module,exports){
 arguments[4][118][0].apply(exports,arguments)
@@ -56855,6 +56876,8 @@ arguments[4][120][0].apply(exports,arguments)
 },{"dup":120}],130:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
 },{"dup":121}],131:[function(require,module,exports){
+arguments[4][122][0].apply(exports,arguments)
+},{"dup":122}],132:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -56892,4 +56915,4 @@ _i18n2.default.init(_i18n.i18nOptions).then(function (t) {
   ), document.getElementById("appContainer"));
 });
 
-},{"./containers/AppContainer":123,"./localization/i18n":124,"react":71,"react-dom":59,"react-router-dom":65}]},{},[131]);
+},{"./containers/AppContainer":124,"./localization/i18n":125,"react":71,"react-dom":59,"react-router-dom":65}]},{},[132]);

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {withRouter} from 'react-router-dom';
 import ManageRecord from '../Smart/ManageRecord';
 import WorkoutProgress from '../Smart/WorkoutProgress';
+import BackSection from '../Simple/BackSection';
 import T from '../../Localization/i18n';
 
 function ManageRecordPage(props) {
@@ -32,13 +33,8 @@ function ManageRecordPage(props) {
 
   return (
     <React.Fragment>
-      <div className="columns is-mobile">
-        <div className="column">
-          <button className="button" onClick={onBackClick}>
-            {T.t("back")}
-          </button>
-        </div>
-      </div>
+      <BackSection onBackClick={onBackClick} />
+
       <div className="columns is-mobile">
         <div className="column">
           <h5 className="title is-5">{subTitle}</h5>

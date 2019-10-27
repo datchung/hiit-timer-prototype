@@ -55227,10 +55227,10 @@ function AppPage(props) {
       _react2.default.createElement(
         'div',
         { className: 'column' },
-        _react2.default.createElement('img', { src: 'images/checked.svg', width: '20' }),
+        _react2.default.createElement('img', { src: 'assets/images/ic_launcher_round.png', width: '18' }),
         _react2.default.createElement(
           'span',
-          { className: 'title is-6' },
+          { className: 'title is-5 has-text-weight-normal' },
           '\xA0',
           _i18n2.default.t("title")
         )
@@ -56720,7 +56720,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  "title": "HIIT - High Intensity Interval Training",
+  "title": "HIIT",
   "editRecord": "Edit",
   "createRecord": "New Workout",
   "back": "Back",

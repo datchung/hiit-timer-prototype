@@ -1,5 +1,5 @@
 export default {
-  "title": "HIIT - High Intensity Interval Training",
+  "title": "HIIT",
   "editRecord": "Edit",
   "createRecord": "New Workout",
   "back": "Back",

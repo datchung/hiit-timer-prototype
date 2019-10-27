@@ -11,8 +11,8 @@ function AppPage(props) {
     <React.Fragment>
       <div className="columns is-mobile has-background-light">
         <div className="column">
-          <img src="images/checked.svg" width="20" />
-          <span className="title is-6">&nbsp;{T.t("title")}</span>
+          <img src="assets/images/ic_launcher_round.png" width="18" />
+          <span className="title is-5 has-text-weight-normal">&nbsp;{T.t("title")}</span>
         </div>
       </div>
       <Switch>

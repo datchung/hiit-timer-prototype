@@ -4,7 +4,6 @@ import T from '../../Localization/i18n';
 import HomePage from './HomePage';
 import RecordListPage from './RecordListPage';
 import ManageRecordPage from './ManageRecordPage';
-import WorkoutProgressPage from './WorkoutProgressPage';
 import NotFoundPage from './NotFoundPage';
 
 function AppPage(props) {
@@ -19,7 +18,6 @@ function AppPage(props) {
       <Switch>
         <Route path="/" exact render={() => <HomePage {...props} />} />
         <Route path="/records" render={() => <RecordListPage {...props} />} />
-        <Route path="/record/:id/play" render={() => <WorkoutProgressPage {...props} />} />
         <Route path="/record/manage" render={() => <ManageRecordPage {...props} />} />
         <Route path="/record/:id" render={() => <ManageRecordPage {...props} />} />
         <Route component={NotFoundPage} />

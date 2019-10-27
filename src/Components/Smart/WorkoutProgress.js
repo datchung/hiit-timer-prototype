@@ -132,7 +132,8 @@ class WorkoutProgress extends React.Component {
     window.clearInterval(this.state.timerCountdownId);
     this.resetKeepScreenOn();
 
-    this.props.history.goBack();
+    // this.props.history.goBack();
+    this.props.onStopPlaying();
   }
 
   keepScreenOn() {

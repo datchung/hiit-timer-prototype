@@ -1,0 +1,23 @@
+body {
+  margin: .75rem;
+}
+
+audio {
+  display: none
+}
+
+.contains-text-overflow {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.is-text-overflow-ellipsis {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.background-flash {
+  background-color: #00d1b2;
+}

@@ -4,25 +4,23 @@ import T from '../../Localization/i18n';
 
 function ManageRecord(props) {
   const [errors, setErrors] = useState({});
-  const [record, setRecord] = useState({
-    id: null,
-    text: "",
-    intervalSeconds: 30,
-    dateCreated: 0,
-    dateModified: 0,
-  });
 
   useEffect(() => {
     const id = props.match.params.id;
     var recordById = props.records.find(t => t.id === id);
     if(!recordById) return;
 
-    setRecord({...recordById});
+    //props.setRecord({...recordById});
+    props.setRecord({
+      id: recordById.id,
+      text: recordById.text,
+      intervalSeconds: recordById.intervalSeconds
+    });
   }, [props.match.params.id]);
 
   function onChange({ target }) {
-    setRecord({
-      ...record,
+    props.setRecord({
+      ...props.record,
       [target.name]: target.value
     });
   }
@@ -30,7 +28,7 @@ function ManageRecord(props) {
   function formIsValid() {
     const _errors = {};
 
-    if (!record.text) _errors.text = T.t("textRequired");
+    if (!props.record.text) _errors.text = T.t("textRequired");
     setErrors(_errors);
     
     return Object.keys(_errors).length === 0;
@@ -40,7 +38,7 @@ function ManageRecord(props) {
     event.preventDefault();
     if (!formIsValid()) return;
 
-    props.onAddRecord(record.text, record.intervalSeconds);
+    props.onAddRecord(props.record.text, props.record.intervalSeconds);
 
     // Show WorkoutProgress component
     props.setIsPlaying(true);
@@ -49,7 +47,7 @@ function ManageRecord(props) {
   return (
     <ManageRecordSimple
       errors={errors}
-      record={record}
+      record={props.record}
       onChange={onChange}
       onSubmit={onSubmit}
       />

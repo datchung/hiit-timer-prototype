@@ -55346,6 +55346,17 @@ function ManageRecordPage(props) {
       isPlaying = _useState4[0],
       setIsPlaying = _useState4[1];
 
+  var _useState5 = (0, _react.useState)({
+    id: "",
+    text: "",
+    intervalSeconds: 30,
+    dateCreated: 0,
+    dateModified: 0
+  }),
+      _useState6 = _slicedToArray(_useState5, 2),
+      record = _useState6[0],
+      setRecord = _useState6[1];
+
   (0, _react.useEffect)(function () {
     var id = props.match.params.id;
     var recordById = props.records.find(function (t) {
@@ -55362,9 +55373,10 @@ function ManageRecordPage(props) {
     setIsPlaying(false);
   }
 
-  if (isPlaying) return _react2.default.createElement(_WorkoutProgress2.default, _extends({}, props, {
-    onStopPlaying: onStopPlaying
-  }));
+  if (isPlaying) return _react2.default.createElement(_WorkoutProgress2.default, _extends({
+    onStopPlaying: onStopPlaying,
+    record: record
+  }, props));
 
   return _react2.default.createElement(
     _react2.default.Fragment,
@@ -55384,7 +55396,9 @@ function ManageRecordPage(props) {
       )
     ),
     _react2.default.createElement(_ManageRecord2.default, _extends({
-      setIsPlaying: setIsPlaying
+      setIsPlaying: setIsPlaying,
+      record: record,
+      setRecord: setRecord
     }, props))
   );
 }
@@ -55835,17 +55849,6 @@ function ManageRecord(props) {
       errors = _useState2[0],
       setErrors = _useState2[1];
 
-  var _useState3 = (0, _react.useState)({
-    id: null,
-    text: "",
-    intervalSeconds: 30,
-    dateCreated: 0,
-    dateModified: 0
-  }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      record = _useState4[0],
-      setRecord = _useState4[1];
-
   (0, _react.useEffect)(function () {
     var id = props.match.params.id;
     var recordById = props.records.find(function (t) {
@@ -55853,19 +55856,24 @@ function ManageRecord(props) {
     });
     if (!recordById) return;
 
-    setRecord(_extends({}, recordById));
+    //props.setRecord({...recordById});
+    props.setRecord({
+      id: recordById.id,
+      text: recordById.text,
+      intervalSeconds: recordById.intervalSeconds
+    });
   }, [props.match.params.id]);
 
   function onChange(_ref) {
     var target = _ref.target;
 
-    setRecord(_extends({}, record, _defineProperty({}, target.name, target.value)));
+    props.setRecord(_extends({}, props.record, _defineProperty({}, target.name, target.value)));
   }
 
   function formIsValid() {
     var _errors = {};
 
-    if (!record.text) _errors.text = _i18n2.default.t("textRequired");
+    if (!props.record.text) _errors.text = _i18n2.default.t("textRequired");
     setErrors(_errors);
 
     return Object.keys(_errors).length === 0;
@@ -55875,7 +55883,7 @@ function ManageRecord(props) {
     event.preventDefault();
     if (!formIsValid()) return;
 
-    props.onAddRecord(record.text, record.intervalSeconds);
+    props.onAddRecord(props.record.text, props.record.intervalSeconds);
 
     // Show WorkoutProgress component
     props.setIsPlaying(true);
@@ -55883,7 +55891,7 @@ function ManageRecord(props) {
 
   return _react2.default.createElement(_ManageRecordSimple2.default, {
     errors: errors,
-    record: record,
+    record: props.record,
     onChange: onChange,
     onSubmit: onSubmit
   });
@@ -56055,14 +56063,8 @@ var WorkoutProgress = function (_React$Component) {
             };
 
             // Get configuration
-            var id = this.props.match.params.id;
-            var recordById = this.props.records.find(function (t) {
-                return t.id === id;
-            });
-            if (!recordById) return;
-
-            var intervalSeconds = recordById.intervalSeconds;
-            var tasks = recordById.text.split("\n").filter(function (t) {
+            var intervalSeconds = this.props.record.intervalSeconds;
+            var tasks = this.props.record.text.split("\n").filter(function (t) {
                 return !isNullOrWhitespace(t);
             });
             if (tasks.length < 1) return;

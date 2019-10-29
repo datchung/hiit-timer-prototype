@@ -77,12 +77,8 @@ class WorkoutProgress extends React.Component {
     };
 
     // Get configuration
-    const id = this.props.match.params.id;
-    var recordById = this.props.records.find(t => t.id === id);
-    if(!recordById) return;
-
-    var intervalSeconds = recordById.intervalSeconds;
-    var tasks = recordById.text.split("\n").filter(t => !isNullOrWhitespace(t));
+    var intervalSeconds = this.props.record.intervalSeconds;
+    var tasks = this.props.record.text.split("\n").filter(t => !isNullOrWhitespace(t));
     if(tasks.length < 1) return;
 
     document.getElementById('alarm').play();

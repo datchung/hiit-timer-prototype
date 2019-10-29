@@ -8,6 +8,13 @@ import T from '../../Localization/i18n';
 function ManageRecordPage(props) {
   const [subTitle, setSubTitle] = useState("");
   const [isPlaying, setIsPlaying] = useState(false);
+  const [record, setRecord] = useState({
+    id: "",
+    text: "",
+    intervalSeconds: 30,
+    dateCreated: 0,
+    dateModified: 0,
+  });
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -26,8 +33,9 @@ function ManageRecordPage(props) {
   if(isPlaying)
     return (
       <WorkoutProgress
-        {...props}
         onStopPlaying={onStopPlaying}
+        record={record}
+        {...props}
         />
     );
 
@@ -43,6 +51,8 @@ function ManageRecordPage(props) {
 
       <ManageRecord
         setIsPlaying={setIsPlaying}
+        record={record}
+        setRecord={setRecord}
         {...props}
         />
     </React.Fragment>

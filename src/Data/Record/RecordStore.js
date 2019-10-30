@@ -2,7 +2,6 @@ import { ReduceStore } from 'flux/utils';
 import uuid from 'uuid';
 import RecordActionTypes from './RecordActionTypes';
 import Dispatcher from '../Dispatcher';
-import Record from './Record';
 import RecordPersistence from './RecordPersistence';
 import DateTimeModule from '../../Modules/DateTimeModule'
 
@@ -25,13 +24,13 @@ class RecordStore extends ReduceStore {
         var dateCreated = DateTimeModule.getNowMs();
         var modifiedState = [
           ...state, 
-          new Record({
+          {
             id: uuid(),
             text: action.text,
             intervalSeconds: action.intervalSeconds,
             dateCreated: dateCreated,
             dateModified: dateCreated
-          })
+          }
         ];
 
         RecordPersistence.saveRecords(modifiedState);

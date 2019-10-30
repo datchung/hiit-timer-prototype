@@ -10,12 +10,7 @@ function ManageRecord(props) {
     var recordById = props.records.find(t => t.id === id);
     if(!recordById) return;
 
-    //props.setRecord({...recordById});
-    props.setRecord({
-      id: recordById.id,
-      text: recordById.text,
-      intervalSeconds: recordById.intervalSeconds
-    });
+    props.setRecord({...recordById});
   }, [props.match.params.id]);
 
   function onChange({ target }) {

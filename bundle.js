@@ -50237,6 +50237,11 @@ var WorkoutProgress = function (_React$Component) {
             }));
         }
     }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            this.onBackClick();
+        }
+    }, {
         key: 'onBackClick',
         value: function onBackClick() {
             window.clearInterval(this.state.intervalId);

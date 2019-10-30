@@ -119,6 +119,10 @@ class WorkoutProgress extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.onBackClick();
+  }
+  
   onBackClick() {
     window.clearInterval(this.state.intervalId);
     window.clearInterval(this.state.timerCountdownId);

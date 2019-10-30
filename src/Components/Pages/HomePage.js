@@ -14,6 +14,14 @@ function HomePage(props) {
           {T.t("recordList")}
         </Link>
       </div>
+
+      {/* <div className="columns is-mobile">
+        <div className="column is-half is-offset-one-quarter"> */}
+          <figure className="image is-4by5">
+            <img src="assets/images/jogging.svg" />
+          </figure>
+        {/* </div>
+      </div> */}
     </React.Fragment>
   );
 }

@@ -49428,6 +49428,11 @@ function HomePage(props) {
         { to: './records', className: 'button is-fullwidth' },
         _i18n2.default.t("recordList")
       )
+    ),
+    _react2.default.createElement(
+      'figure',
+      { className: 'image is-4by5' },
+      _react2.default.createElement('img', { src: 'assets/images/jogging.svg' })
     )
   );
 }
